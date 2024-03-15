@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://blepfoh48ubvk"]
+[gd_scene load_steps=3 format=3 uid="uid://blepfoh48ubvk"]
+
+[ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpux1"]
 size = Vector2(76, 82)
 
 [node name="Fighter" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 4
+texture = ExtResource("1_hyssi")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/CharacterBody2D"]
 position = Vector2(28, 31)
 shape = SubResource("RectangleShape2D_cpux1")
