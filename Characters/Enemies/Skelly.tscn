@@ -1,19 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://c75kvjd0027di"]
 
-[ext_resource type="Texture2D" uid="uid://ciqdjmwl4hpsg" path="res://Characters/Enemies/skelly_sprite.png" id="1_lgwu7"]
+[ext_resource type="Texture2D" uid="uid://ciqdjmwl4hpsg" path="res://Characters/Enemies/skelly_sprite.png" id="1_tspxl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpux1"]
-size = Vector2(76, 82)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
+size = Vector2(658, 647)
 
-[node name="Skelly" type="Node2D"]
+[node name="Enemy" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
-texture = ExtResource("1_lgwu7")
+texture = ExtResource("1_tspxl")
 centered = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Sprite2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(319, 313.5)
+shape = SubResource("RectangleShape2D_gd4ks")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/CharacterBody2D"]
-position = Vector2(28, 31)
-shape = SubResource("RectangleShape2D_cpux1")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://6rbfdpy1myck"]
+[gd_scene load_steps=3 format=3 uid="uid://cotqhie772b6n"]
 
-[ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
+[ext_resource type="Texture2D" uid="uid://c8cae7xvukx6a" path="res://Characters/Player/healer_sprite.png" id="1_xig04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
 
-[node name="Fighter" type="CharacterBody2D"]
+[node name="Healer" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_hyssi")
+texture = ExtResource("1_xig04")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

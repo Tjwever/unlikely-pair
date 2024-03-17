@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=4 format=3 uid="uid://oyovxuu3dahk"]
+
+[ext_resource type="PackedScene" uid="uid://c75kvjd0027di" path="res://Characters/Enemies/Skelly.tscn" id="1_xwvg5"]
+[ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
+[ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
 
 [node name="MainScene" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_xwvg5")]
+position = Vector2(24, 50)
+scale = Vector2(2.12, 2.12)
+
+[node name="Fighter" parent="." instance=ExtResource("2_jug8b")]
+position = Vector2(4463, 557)
+
+[node name="Healer" parent="." instance=ExtResource("3_a68mk")]
+position = Vector2(5165, 1259)
