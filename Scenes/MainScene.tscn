@@ -7,11 +7,10 @@
 [node name="MainScene" type="Node2D"]
 
 [node name="Enemy" parent="." instance=ExtResource("1_xwvg5")]
-position = Vector2(24, 50)
-scale = Vector2(2.12, 2.12)
+position = Vector2(140, 210)
 
 [node name="Fighter" parent="." instance=ExtResource("2_jug8b")]
-position = Vector2(4463, 557)
+position = Vector2(718, 222)
 
 [node name="Healer" parent="." instance=ExtResource("3_a68mk")]
-position = Vector2(5165, 1259)
+position = Vector2(895, 394)

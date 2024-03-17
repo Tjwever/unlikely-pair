@@ -6,6 +6,7 @@
 size = Vector2(658, 647)
 
 [node name="Healer" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xig04")

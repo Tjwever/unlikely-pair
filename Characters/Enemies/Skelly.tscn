@@ -6,6 +6,7 @@
 size = Vector2(658, 647)
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.360001, 0.360001)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
