@@ -1,16 +1,289 @@
-[gd_scene load_steps=4 format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=7 format=3 uid="uid://oyovxuu3dahk"]
 
+[ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
+[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
 [ext_resource type="PackedScene" uid="uid://c75kvjd0027di" path="res://Characters/Enemies/Skelly.tscn" id="1_xwvg5"]
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
+[ext_resource type="PackedScene" uid="uid://de5qwi65rhdek" path="res://Scenes/healthbar.tscn" id="3_bcho7"]
 
 [node name="MainScene" type="Node2D"]
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-23, 0)
+scale = Vector2(2.50573, 2.48416)
+texture = ExtResource("1_81pdv")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-23, -441)
+scale = Vector2(2.50573, 2.48416)
+texture = ExtResource("1_81pdv")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EnemySideUI" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 450)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -450.0
+offset_right = 910.0
+grow_vertical = 0
+theme = ExtResource("1_hfth5")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/EnemySideUI"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="PlayerSideUI" type="PanelContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 450)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -990.0
+offset_top = -450.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_hfth5")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerSideUI"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Fighter"
+
+[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Healer"
+
+[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Skelly"
+
+[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+
 [node name="Enemy" parent="." instance=ExtResource("1_xwvg5")]
-position = Vector2(140, 210)
+position = Vector2(501, 248)
+scale = Vector2(0.356553, 0.356553)
 
 [node name="Fighter" parent="." instance=ExtResource("2_jug8b")]
-position = Vector2(718, 222)
+position = Vector2(1227, 351)
+scale = Vector2(0.1, 0.1)
 
 [node name="Healer" parent="." instance=ExtResource("3_a68mk")]
-position = Vector2(895, 394)
+position = Vector2(1370, 461)
+scale = Vector2(0.1, 0.1)
