@@ -26,3 +26,9 @@ position = Vector2(332, 315)
 shape = SubResource("RectangleShape2D_gd4ks")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

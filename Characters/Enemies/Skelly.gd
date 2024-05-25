@@ -25,7 +25,7 @@ func _ready():
 
 func set_attack_timer():
 	timer.wait_time = BASE_WAIT_TIME / (speed / 10.0)
-	print("Enemy attack wait time set to: ", timer.wait_time)
+	#print("Enemy attack wait time set to: ", timer.wait_time)
 
 func calculate_damage(atk_damage, fighter_defense):
 	return max(0, atk_damage - fighter_defense)
@@ -33,7 +33,7 @@ func calculate_damage(atk_damage, fighter_defense):
 func attack():
 	if fighter:
 		var damage_dealt = calculate_damage(attack_damge, fighter.defense)
-		print('Enemy deals ', damage_dealt)
+		#print('Enemy deals ', damage_dealt)
 		fighter.take_damage(damage_dealt)
 
 func take_damage(damage):
