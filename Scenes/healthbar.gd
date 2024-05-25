@@ -12,7 +12,7 @@ func init_health(_health):
 	value = health
 	damage_bar.max_value = health
 	damage_bar.value = health
-	
+
 func update_health(_health):
 	var prev_health = health
 	health = _health
