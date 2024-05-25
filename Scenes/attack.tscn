@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jymf36cmyn2b"]
+
+[sub_resource type="GDScript" id="GDScript_vultr"]
+
+[node name="Attack" type="Node2D"]
+script = SubResource("GDScript_vultr")

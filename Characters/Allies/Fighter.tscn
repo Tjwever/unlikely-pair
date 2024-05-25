@@ -1,5 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6rbfdpy1myck"]
+[gd_scene load_steps=6 format=3 uid="uid://6rbfdpy1myck"]
 
+[ext_resource type="PackedScene" uid="uid://jymf36cmyn2b" path="res://Scenes/attack.tscn" id="1_1q7dw"]
+[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://selection-arrow.png" id="1_blj0s"]
+[ext_resource type="Script" path="res://Characters/Allies/Fighter.gd" id="1_ct7jp"]
 [ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
@@ -7,12 +10,22 @@ size = Vector2(658, 647)
 
 [node name="Fighter" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
+script = ExtResource("1_ct7jp")
+
+[node name="Attack" parent="." instance=ExtResource("1_1q7dw")]
+
+[node name="Focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(955, 225)
+scale = Vector2(5.23684, 5.23684)
+texture = ExtResource("1_blj0s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hyssi")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(332, 315)
 shape = SubResource("RectangleShape2D_gd4ks")
 

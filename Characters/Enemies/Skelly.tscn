@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c75kvjd0027di"]
+[gd_scene load_steps=4 format=3 uid="uid://c75kvjd0027di"]
 
+[ext_resource type="Script" path="res://Characters/Enemies/Skelly.gd" id="1_kljea"]
 [ext_resource type="Texture2D" uid="uid://ciqdjmwl4hpsg" path="res://Characters/Enemies/skelly_sprite.png" id="1_tspxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
@@ -7,6 +8,7 @@ size = Vector2(658, 647)
 
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(0.360001, 0.360001)
+script = ExtResource("1_kljea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3

@@ -1,5 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cotqhie772b6n"]
+[gd_scene load_steps=5 format=3 uid="uid://cotqhie772b6n"]
 
+[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://selection-arrow.png" id="1_dmiam"]
+[ext_resource type="Script" path="res://Characters/Player/Healer.gd" id="1_kmod5"]
 [ext_resource type="Texture2D" uid="uid://c8cae7xvukx6a" path="res://Characters/Player/healer_sprite.png" id="1_xig04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
@@ -7,6 +9,13 @@ size = Vector2(658, 647)
 
 [node name="Healer" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
+script = ExtResource("1_kmod5")
+
+[node name="Focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(955, 235)
+scale = Vector2(5.23684, 5.23684)
+texture = ExtResource("1_dmiam")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xig04")
