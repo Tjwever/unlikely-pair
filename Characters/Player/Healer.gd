@@ -12,6 +12,8 @@ signal update_healer_health
 @onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
 
+@onready var animation_player = $AnimationPlayer
+
 var max_health := 200
 var current_health := 200
 var defense := 3
@@ -41,6 +43,7 @@ func take_damage(damage):
 func _process(_delta):
 	if Input.is_action_just_pressed("heal"):
 		if !attack_delay:
+			animation_player.play("quick_heal")
 			heal(quick_heal)
 			attack_delay = true
 			timer.start()
