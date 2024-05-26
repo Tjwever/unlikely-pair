@@ -8,6 +8,7 @@ signal update_enemy_health
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
 @onready var timer = $Timer
+@onready var animation_player = $AnimationPlayer
 
 const BASE_WAIT_TIME = 2.0
 
@@ -32,6 +33,8 @@ func calculate_damage(atk_damage, fighter_defense):
 
 func attack():
 	if fighter:
+		animation_player.play("quick_attack")
+		await get_tree().create_timer(0.1).timeout
 		var damage_dealt = calculate_damage(attack_damge, fighter.defense)
 		#print('Enemy deals ', damage_dealt)
 		fighter.take_damage(damage_dealt)
