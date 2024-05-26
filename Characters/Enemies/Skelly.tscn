@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c75kvjd0027di"]
+[gd_scene load_steps=9 format=3 uid="uid://c75kvjd0027di"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/Skelly.gd" id="1_kljea"]
 [ext_resource type="Texture2D" uid="uid://ciqdjmwl4hpsg" path="res://Characters/Enemies/skelly_sprite.png" id="1_tspxl"]
@@ -48,9 +48,17 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.2638, 0.605742), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_8ff12"]
+resource_name = "death"
+
+[sub_resource type="Animation" id="Animation_m6gi1"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80k34"]
 _data = {
+"RESET": SubResource("Animation_m6gi1"),
 "big_attack": SubResource("Animation_72t1f"),
+"death": SubResource("Animation_8ff12"),
 "quick_attack": SubResource("Animation_s2ake")
 }
 

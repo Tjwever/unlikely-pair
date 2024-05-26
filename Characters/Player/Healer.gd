@@ -3,9 +3,10 @@ extends CharacterBody2D
 class_name Healer
 
 signal update_healer_health
+signal healer_defeated
 
 @onready var timer = $Timer
-@onready var healthbar = $"../CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
+@onready var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"."
 
@@ -21,6 +22,8 @@ var quick_heal := 10
 var attack_delay := false
 var allies = []
 var selected_ally_index := 0
+
+var isDead: bool = false
 
 func _ready():
 	healthbar.init_health(current_health)
@@ -38,11 +41,13 @@ func take_damage(damage):
 		current_health = 0
 
 	if current_health == 0:
+		animation_player.play("death")
+		isDead = true
 		print('death')
 
 func _process(_delta):
 	if Input.is_action_just_pressed("heal"):
-		if !attack_delay:
+		if !attack_delay and isDead == false:
 			animation_player.play("quick_heal")
 			heal(quick_heal)
 			attack_delay = true
@@ -87,7 +92,6 @@ func selected_ally(direction):
 
 func is_alive():
 	return current_health > 0
-
 
 func _on_timer_timeout():
 	attack_delay = false

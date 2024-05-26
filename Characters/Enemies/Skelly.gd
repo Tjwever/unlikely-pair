@@ -3,8 +3,9 @@ extends CharacterBody2D
 class_name Skelly
 
 signal update_enemy_health
+signal enemy_defeated
 
-@onready var healthbar = $"../CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
+@onready var healthbar = $"../GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
 @onready var timer = $Timer
@@ -47,6 +48,12 @@ func take_damage(damage):
 		current_health = 0
 
 	if current_health == 0:
+		#animation_player.play("death")
+		print('**gasp**')
+		await get_tree().create_timer(3).timeout
+		print('Im dead....')
+		queue_free()
+		emit_signal("enemy_defeated")
 		print('death')
 
 # Example function to heal

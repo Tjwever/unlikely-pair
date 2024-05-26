@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=8 format=3 uid="uid://oyovxuu3dahk"]
 
 [ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
+[ext_resource type="Script" path="res://Scenes/MainScene.gd" id="1_qjgyc"]
 [ext_resource type="PackedScene" uid="uid://c75kvjd0027di" path="res://Characters/Enemies/Skelly.tscn" id="1_xwvg5"]
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
 [ext_resource type="PackedScene" uid="uid://de5qwi65rhdek" path="res://Scenes/healthbar.tscn" id="3_bcho7"]
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource("1_qjgyc")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(-23, 0)
@@ -21,9 +23,9 @@ scale = Vector2(2.50573, 2.48416)
 texture = ExtResource("1_81pdv")
 centered = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="EnemySideUI" type="PanelContainer" parent="CanvasLayer"]
+[node name="EnemySideUI" type="PanelContainer" parent="GameUI"]
 custom_minimum_size = Vector2(0, 450)
 anchors_preset = 2
 anchor_top = 1.0
@@ -33,10 +35,10 @@ offset_right = 910.0
 grow_vertical = 0
 theme = ExtResource("1_hfth5")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/EnemySideUI"]
+[node name="GridContainer" type="GridContainer" parent="GameUI/EnemySideUI"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/EnemySideUI/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -45,110 +47,110 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer1" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer1" type="MarginContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Control" type="Control" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer2" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer2" type="MarginContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Control" type="Control" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer3" type="MarginContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer3" type="MarginContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Control" type="Control" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="PlayerSideUI" type="PanelContainer" parent="CanvasLayer"]
+[node name="PlayerSideUI" type="PanelContainer" parent="GameUI"]
 custom_minimum_size = Vector2(0, 450)
 anchors_preset = 3
 anchor_left = 1.0
@@ -161,10 +163,10 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("1_hfth5")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerSideUI"]
+[node name="GridContainer" type="GridContainer" parent="GameUI/PlayerSideUI"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/PlayerSideUI/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -173,104 +175,104 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Fighter" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Fighter" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "Fighter"
 
-[node name="HSpacer" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HSpacer" type="Control" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer1" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer1" type="MarginContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Healer" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Healer" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "Healer"
 
-[node name="HSpacer" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HSpacer" type="Control" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer2" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer2" type="MarginContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Control" type="Control" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer3" type="MarginContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer3" type="MarginContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Skelly"
 
-[node name="Control" type="Control" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Control" type="Control" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Healthbar" parent="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
+[node name="Healthbar" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -288,6 +290,35 @@ scale = Vector2(0.1, 0.1)
 position = Vector2(1370, 461)
 scale = Vector2(0.1, 0.1)
 
-[connection signal="update_enemy_health" from="Enemy" to="CanvasLayer/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]
-[connection signal="update_fighter_health" from="Fighter" to="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_fighter_update_fighter_health"]
-[connection signal="update_healer_health" from="Healer" to="CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]
+[node name="EndGameCanvas" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="EndGameContainer" type="PanelContainer" parent="EndGameCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouWon" type="Label" parent="EndGameCanvas/EndGameContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "You Won!"
+horizontal_alignment = 1
+
+[node name="GameOver" type="Label" parent="EndGameCanvas/EndGameContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "Game Over!"
+horizontal_alignment = 1
+
+[connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]
+[connection signal="update_enemy_health" from="Enemy" to="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]
+[connection signal="update_fighter_health" from="Fighter" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_fighter_update_fighter_health"]
+[connection signal="update_healer_health" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]

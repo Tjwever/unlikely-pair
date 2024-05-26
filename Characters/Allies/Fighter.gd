@@ -3,8 +3,9 @@ extends CharacterBody2D
 class_name Fighter
 
 signal update_fighter_health
+signal fighter_defeated
 
-@onready var healthbar = $"../CanvasLayer/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
+@onready var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
 @onready var enemy = $"../Enemy"
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
@@ -14,7 +15,7 @@ const BASE_WAIT_TIME = 1
 var max_health := 400
 var current_health := 400
 var defense := 3
-var attack_damge := 150
+var attack_damge := 1650
 var speed := 9.0
 
 var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
@@ -33,12 +34,14 @@ func calculate_damage(atk_damage, enemy_defense):
 	return max(0, atk_damage - enemy_defense)
 
 func attack():
-	if enemy:
+	if enemy.current_health != 0:
 		animation_player.play("quick_attack")
 		await get_tree().create_timer(0.32).timeout
 		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
 		print('Fighter deals ', damage_dealt)
 		enemy.take_damage(damage_dealt)
+	else:
+		timer.stop()
 
 func take_damage(damage):
 	current_health -= damage
@@ -48,6 +51,8 @@ func take_damage(damage):
 		current_health = 0
 
 	if current_health == 0:
+		animation_player.play("death")
+		await get_tree().create_timer(0.32).timeout
 		print('death')
 		timer.stop()
 
