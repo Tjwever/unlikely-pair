@@ -17,7 +17,7 @@ var allies := [fighter, healer]
 var max_health := 10000
 var current_health := 10000
 var defense := 3
-var attack_damge := 45
+var attack_damge := 245
 var speed := 8.0
 
 func _ready():
@@ -32,13 +32,33 @@ func set_attack_timer():
 func calculate_damage(atk_damage, fighter_defense):
 	return max(0, atk_damage - fighter_defense)
 
+func choose_target():
+	print('is fighter alive: ', fighter.isDead)
+	print('is healer alive: ', healer.isDead)
+	var rand = randi() % 100
+	if rand < 70:
+		if fighter.isDead:
+			print('fighter is dead, picking healer')
+			return healer
+		return fighter
+	else:
+		if healer.isDead:
+			print('healer is dead, picking fighter')
+			return fighter
+		return healer
+
 func attack():
-	if fighter:
+	var target = choose_target()
+	
+	if fighter.isDead and healer.isDead:
+		timer.stop()
+	
+	if target:
 		animation_player.play("quick_attack")
 		await get_tree().create_timer(0.1).timeout
-		var damage_dealt = calculate_damage(attack_damge, fighter.defense)
+		var damage_dealt = calculate_damage(attack_damge, target.defense)
 		#print('Enemy deals ', damage_dealt)
-		fighter.take_damage(damage_dealt)
+		target.take_damage(damage_dealt)
 
 func take_damage(damage):
 	current_health -= damage
@@ -50,7 +70,8 @@ func take_damage(damage):
 	if current_health == 0:
 		#animation_player.play("death")
 		print('**gasp**')
-		await get_tree().create_timer(3).timeout
+		timer.stop()
+		await get_tree().create_timer(1).timeout
 		print('Im dead....')
 		queue_free()
 		emit_signal("enemy_defeated")

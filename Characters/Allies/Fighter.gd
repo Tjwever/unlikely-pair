@@ -15,8 +15,9 @@ const BASE_WAIT_TIME = 1
 var max_health := 400
 var current_health := 400
 var defense := 3
-var attack_damge := 1650
+var attack_damge := 50
 var speed := 9.0
+var isDead: bool = false
 
 var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
 
@@ -40,6 +41,8 @@ func attack():
 		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
 		print('Fighter deals ', damage_dealt)
 		enemy.take_damage(damage_dealt)
+		if enemy.current_health <= 0:
+			animation_player.queue("death_animation")
 	else:
 		timer.stop()
 
@@ -53,6 +56,8 @@ func take_damage(damage):
 	if current_health == 0:
 		animation_player.play("death")
 		await get_tree().create_timer(0.32).timeout
+		isDead = true
+		emit_signal("fighter_defeated")
 		print('death')
 		timer.stop()
 
@@ -64,9 +69,8 @@ func heal(amount):
 	if current_health > max_health:
 		current_health = max_health
 
-# Function to check if enemy is alive
 func is_alive():
-	return current_health > 0
+	return current_health <= 0
 
 func _on_timer_timeout():
 	attack()

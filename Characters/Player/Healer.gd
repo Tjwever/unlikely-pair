@@ -43,7 +43,8 @@ func take_damage(damage):
 	if current_health == 0:
 		animation_player.play("death")
 		isDead = true
-		print('death')
+		emit_signal("healer_defeated")
+		print('healer death')
 
 func _process(_delta):
 	if Input.is_action_just_pressed("heal"):
@@ -91,7 +92,7 @@ func selected_ally(direction):
 	print("Selected ally: ", allies[selected_ally_index].name)
 
 func is_alive():
-	return current_health > 0
+	return current_health <= 0
 
 func _on_timer_timeout():
 	attack_delay = false
