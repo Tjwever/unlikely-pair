@@ -41,8 +41,6 @@ func attack():
 		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
 		print('Fighter deals ', damage_dealt)
 		enemy.take_damage(damage_dealt)
-		if enemy.current_health <= 0:
-			animation_player.queue("death_animation")
 	else:
 		timer.stop()
 
@@ -54,12 +52,12 @@ func take_damage(damage):
 		current_health = 0
 
 	if current_health == 0:
-		animation_player.play("death")
+		timer.stop()
+		animation_player.queue("death")
 		await get_tree().create_timer(0.32).timeout
 		isDead = true
 		emit_signal("fighter_defeated")
 		print('death')
-		timer.stop()
 
 # Example function to heal
 func heal(amount):

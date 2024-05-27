@@ -12,7 +12,7 @@ func _ready():
 	you_won.visible = false
 	game_over.visible = false
 
-func _process(delta):
+func _process(_delta):
 	if is_fighter_dead and is_healer_dead:
 		await get_tree().create_timer(1.3).timeout
 		end_game_canvas.visible = true
