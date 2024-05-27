@@ -61,10 +61,10 @@ func attack():
 		#print('Enemy deals ', damage_dealt)
 		target.take_damage(damage_dealt)
 
-func take_damage(damage):
+func take_damage(damage, is_critical_hit):
 	current_health -= damage
 	#maybe add if it's critical in here somewhere, replace 'false' if is_critical value
-	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, false)
+	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, is_critical_hit)
 	emit_signal("update_enemy_health", current_health)
 	
 	if current_health < 0:

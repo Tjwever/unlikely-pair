@@ -16,9 +16,11 @@ const BASE_WAIT_TIME = 1
 var max_health := 400
 var current_health := 400
 var defense := 3
-var attack_damge := 1550
+var attack_damge := 550
+var critical_hit_rate: int = 60
 var speed := 9.0
 var isDead: bool = false
+var is_critical_hit: bool = false
 
 var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
 
@@ -33,7 +35,12 @@ func set_attack_timer():
 	#print("Fighter attack wait time set to: ", timer.wait_time)
 
 func calculate_damage(atk_damage, enemy_defense):
-	return max(0, atk_damage - enemy_defense)
+	is_critical_hit = (randi() % 100) < critical_hit_rate
+	var final_damage = atk_damage
+	if is_critical_hit:
+		final_damage *= 2
+
+	return max(0, final_damage - enemy_defense)
 
 func attack():
 	if enemy.current_health != 0:
@@ -41,7 +48,9 @@ func attack():
 		await get_tree().create_timer(0.32).timeout
 		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
 		print('Fighter deals ', damage_dealt)
-		enemy.take_damage(damage_dealt)
+		enemy.take_damage(damage_dealt, is_critical_hit)
+		#enemy.take_damage(damage_dealt)
+		is_critical_hit = false
 	else:
 		timer.stop()
 
