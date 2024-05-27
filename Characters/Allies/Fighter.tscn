@@ -8,33 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
 
-[sub_resource type="Animation" id="Animation_e83nu"]
-resource_name = "quick_attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.35, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(45, 0), Vector2(-275, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.35, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.24038, 1), Vector2(0.744591, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_hh8ym"]
 resource_name = "charge_attack"
 length = 2.0
@@ -90,6 +63,33 @@ tracks/1/keys = {
 "values": [0.0, 0.45064, 2.42123, 3.14227]
 }
 
+[sub_resource type="Animation" id="Animation_e83nu"]
+resource_name = "quick_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.35, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(45, 0), Vector2(-275, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.35, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.24038, 1), Vector2(0.744591, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iqqwl"]
 _data = {
 "charge_attack": SubResource("Animation_hh8ym"),
@@ -125,5 +125,8 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(240, -60)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -9,13 +9,14 @@ signal fighter_defeated
 @onready var enemy = $"../Enemy"
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 
 const BASE_WAIT_TIME = 1
 
 var max_health := 400
 var current_health := 400
 var defense := 3
-var attack_damge := 50
+var attack_damge := 1550
 var speed := 9.0
 var isDead: bool = false
 
@@ -46,6 +47,7 @@ func attack():
 
 func take_damage(damage):
 	current_health -= damage
+	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, false)
 	emit_signal("update_fighter_health", current_health)
 	
 	if current_health < 0:

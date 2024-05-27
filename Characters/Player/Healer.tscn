@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
 
-[sub_resource type="Animation" id="Animation_6xjrh"]
-resource_name = "quick_heal"
+[sub_resource type="Animation" id="Animation_s1ncc"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,10 +16,10 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(325, 540), Vector2(430, 540), Vector2(120, 540), Vector2(325, 540), Vector2(325, 540)]
+"values": [Vector2(325, 540)]
 }
 
 [sub_resource type="Animation" id="Animation_tu4iq"]
@@ -36,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.18636, 0.796985), Vector2(0.738667, 1.20402), Vector2(0.738667, 1.11787), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_s1ncc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(325, 540)]
 }
 
 [sub_resource type="Animation" id="Animation_qgogu"]
@@ -78,6 +63,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.515614, 0.923034, 0.923034, -1.55327]
+}
+
+[sub_resource type="Animation" id="Animation_6xjrh"]
+resource_name = "quick_heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(325, 540), Vector2(430, 540), Vector2(120, 540), Vector2(325, 540), Vector2(325, 540)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3aatl"]
@@ -116,5 +116,8 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.7
 one_shot = true
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(315, -195)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

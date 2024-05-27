@@ -10,6 +10,7 @@ signal enemy_defeated
 @onready var healer = $"../Healer"
 @onready var timer = $Timer
 @onready var animation_player = $AnimationPlayer
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 
 const BASE_WAIT_TIME = 2.0
 
@@ -17,7 +18,7 @@ var allies := [fighter, healer]
 var max_health := 10000
 var current_health := 10000
 var defense := 3
-var attack_damge := 245
+var attack_damge := 45
 var speed := 8.0
 
 func _ready():
@@ -52,7 +53,7 @@ func attack():
 	
 	if fighter.isDead and healer.isDead:
 		timer.stop()
-	
+
 	if target:
 		animation_player.play("quick_attack")
 		await get_tree().create_timer(0.1).timeout
@@ -62,16 +63,18 @@ func attack():
 
 func take_damage(damage):
 	current_health -= damage
+	#maybe add if it's critical in here somewhere, replace 'false' if is_critical value
+	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, false)
 	emit_signal("update_enemy_health", current_health)
 	
 	if current_health < 0:
 		current_health = 0
 
 	if current_health == 0:
-		#animation_player.play("death")
+		animation_player.play("death")
 		print('**gasp**')
-		timer.stop()
 		await get_tree().create_timer(1).timeout
+		timer.stop()
 		print('Im dead....')
 		queue_free()
 		emit_signal("enemy_defeated")
