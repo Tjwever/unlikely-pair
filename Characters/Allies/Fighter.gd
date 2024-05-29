@@ -16,11 +16,13 @@ const BASE_WAIT_TIME = 1
 var max_health := 400
 var current_health := 400
 var defense := 3
-var attack_damge := 550
-var critical_hit_rate: int = 60
+var attack_damge := 250
 var speed := 9.0
-var isDead: bool = false
+var critical_hit_rate: int = 3
+var double_attack_rate: int = 60
 var is_critical_hit: bool = false
+var is_double_attack: bool = false
+var isDead: bool = false
 
 var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
 
@@ -44,12 +46,22 @@ func calculate_damage(atk_damage, enemy_defense):
 
 func attack():
 	if enemy.current_health != 0:
+		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
+		var double_attack_damage = randi_range(0, damage_dealt / 2)
+		
+		is_double_attack = (randi() % 100) < double_attack_rate
+		
 		animation_player.play("quick_attack")
 		await get_tree().create_timer(0.32).timeout
-		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
-		print('Fighter deals ', damage_dealt)
-		enemy.take_damage(damage_dealt, is_critical_hit)
-		#enemy.take_damage(damage_dealt)
+		#print('Fighter deals ', damage_dealt)
+		if is_double_attack:
+			animation_player.play("double_attack")
+			await get_tree().create_timer(0.1).timeout
+			enemy.take_damage(damage_dealt - double_attack_damage, is_critical_hit)
+			enemy.take_damage(damage_dealt - double_attack_damage, is_critical_hit)
+			is_double_attack = false
+		else:
+			enemy.take_damage(damage_dealt, is_critical_hit)
 		is_critical_hit = false
 	else:
 		timer.stop()

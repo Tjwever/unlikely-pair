@@ -8,7 +8,8 @@ signal enemy_defeated
 @onready var healthbar = $"../GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
-@onready var timer = $Timer
+@onready var regular_attack_timer = $RegularAttackTimer
+@onready var big_attack_timer = $BigAttackTimer
 @onready var animation_player = $AnimationPlayer
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 
@@ -20,46 +21,55 @@ var current_health := 10000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
+var big_attack_cooldown : int = 10
+var is_big_attack : bool = false
 
 func _ready():
 	healthbar.init_health(current_health)
 	set_attack_timer()
-	timer.start()
+	regular_attack_timer.start()
+	big_attack_timer.wait_time = big_attack_cooldown
+	big_attack_timer.start()
 
 func set_attack_timer():
-	timer.wait_time = BASE_WAIT_TIME / (speed / 10.0)
-	#print("Enemy attack wait time set to: ", timer.wait_time)
+	regular_attack_timer.wait_time = BASE_WAIT_TIME / (speed / 10.0)
 
 func calculate_damage(atk_damage, fighter_defense):
 	return max(0, atk_damage - fighter_defense)
 
 func choose_target():
-	print('is fighter alive: ', fighter.isDead)
-	print('is healer alive: ', healer.isDead)
 	var rand = randi() % 100
 	if rand < 70:
 		if fighter.isDead:
-			print('fighter is dead, picking healer')
 			return healer
 		return fighter
 	else:
 		if healer.isDead:
-			print('healer is dead, picking fighter')
 			return fighter
 		return healer
 
 func attack():
 	var target = choose_target()
-	
 	if fighter.isDead and healer.isDead:
-		timer.stop()
+		regular_attack_timer.stop()
 
 	if target:
-		animation_player.play("quick_attack")
-		await get_tree().create_timer(0.1).timeout
 		var damage_dealt = calculate_damage(attack_damge, target.defense)
-		#print('Enemy deals ', damage_dealt)
-		target.take_damage(damage_dealt)
+		
+		if is_big_attack:
+			animation_player.play("big_attack")
+			await get_tree().create_timer(0.75).timeout
+			if fighter.isDead or healer.isDead:
+				target.take_damage(damage_dealt)
+			else:
+				fighter.take_damage(damage_dealt + 25) # 25 is arbitrary number for now
+				healer.take_damage(damage_dealt + 25)
+			is_big_attack = false
+		else:
+			animation_player.play("quick_attack")
+			await get_tree().create_timer(0.1).timeout
+			#print('Enemy deals ', damage_dealt)
+			target.take_damage(damage_dealt)
 
 func take_damage(damage, is_critical_hit):
 	current_health -= damage
@@ -71,14 +81,11 @@ func take_damage(damage, is_critical_hit):
 		current_health = 0
 
 	if current_health == 0:
-		animation_player.play("death")
-		print('**gasp**')
+		regular_attack_timer.stop()
+		animation_player.queue("death")
 		await get_tree().create_timer(1).timeout
-		timer.stop()
-		print('Im dead....')
-		queue_free()
 		emit_signal("enemy_defeated")
-		print('death')
+		queue_free()
 
 # Example function to heal
 func heal(amount):
@@ -92,3 +99,7 @@ func is_alive():
 
 func _on_timer_timeout():
 	attack()
+
+func _on_big_attack_timer_timeout():
+	is_big_attack = true
+	big_attack_timer.start()
