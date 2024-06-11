@@ -147,7 +147,6 @@ texture = ExtResource("1_hyssi")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(332, 315)
 shape = SubResource("RectangleShape2D_gd4ks")
 
