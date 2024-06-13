@@ -26,10 +26,21 @@ var is_big_attack : bool = false
 
 func _ready():
 	healthbar.init_health(current_health)
+
+	if fighter.isDead and healer.isDead:
+		big_attack_timer.stop()
+		regular_attack_timer.stop()
+
 	set_attack_timer()
+
 	regular_attack_timer.start()
 	big_attack_timer.wait_time = big_attack_cooldown
 	big_attack_timer.start()
+
+func _process(_delta):
+	if fighter.isDead and healer.isDead:
+		big_attack_timer.stop()
+		regular_attack_timer.stop()
 
 func set_attack_timer():
 	regular_attack_timer.wait_time = BASE_WAIT_TIME / (speed / 10.0)
@@ -101,5 +112,7 @@ func _on_timer_timeout():
 	attack()
 
 func _on_big_attack_timer_timeout():
+	if fighter.isDead or healer.isDead:
+		big_attack_timer.stop()
 	is_big_attack = true
 	big_attack_timer.start()
