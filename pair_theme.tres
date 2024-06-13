@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cx02ixemps6jx"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cx02ixemps6jx"]
 
 [ext_resource type="Texture2D" uid="uid://dh0f6ol5fkxuq" path="res://unlikely-pair-theme.png" id="1_61lvs"]
+[ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="1_iteq5"]
 [ext_resource type="Texture2D" uid="uid://4hn4ft1lvuja" path="res://unlikely-pair-progressbar.png" id="2_h7kot"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quioa"]
@@ -25,6 +26,7 @@ texture_margin_right = 24.0
 texture_margin_bottom = 24.0
 
 [resource]
+Label/fonts/font = ExtResource("1_iteq5")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_quioa")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_0wtqn")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_kvskc")

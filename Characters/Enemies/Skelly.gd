@@ -11,7 +11,7 @@ signal enemy_defeated
 @onready var regular_attack_timer = $RegularAttackTimer
 @onready var big_attack_timer = $BigAttackTimer
 @onready var animation_player = $AnimationPlayer
-@onready var damage_numbers_origin = $DamageNumbersOrigin
+@onready var display_numbers_origin = $DisplayNumbersOrigin
 
 const BASE_WAIT_TIME = 2.0
 
@@ -74,7 +74,7 @@ func attack():
 func take_damage(damage, is_critical_hit):
 	current_health -= damage
 	#maybe add if it's critical in here somewhere, replace 'false' if is_critical value
-	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, is_critical_hit)
+	DisplayNumbers.display_number(damage, display_numbers_origin.global_position, is_critical_hit, false)
 	emit_signal("update_enemy_health", current_health)
 	
 	if current_health < 0:

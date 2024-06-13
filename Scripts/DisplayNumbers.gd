@@ -1,6 +1,6 @@
 extends Node
 
-func display_number(value: int, position: Vector2, is_critical: bool = false):
+func display_number(value: int, position: Vector2, is_critical: bool = false, is_healing: bool = false):
 	var number = Label.new()
 	number.global_position = position
 	number.text = str(value)
@@ -10,7 +10,8 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 	var color = "#FFF"
 	if is_critical:
 		color = "#CCB023"
-		#color = "#B22"
+	if is_healing:
+		color = "#00ce89"
 	if value == 0:
 		color = "#FFF8"
 

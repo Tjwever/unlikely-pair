@@ -158,7 +158,7 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+[node name="DisplayNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(240, -60)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

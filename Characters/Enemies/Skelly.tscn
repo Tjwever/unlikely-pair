@@ -134,7 +134,7 @@ libraries = {
 
 [node name="BigAttackTimer" type="Timer" parent="."]
 
-[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+[node name="DisplayNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(324.999, -47.2221)
 
 [connection signal="timeout" from="RegularAttackTimer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvr7nqncvbk3p"]
+
+[ext_resource type="Script" path="res://Scenes/start_menu.gd" id="1_jtaxl"]
+[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="2_q3tlk"]
+[ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="3_vwf2c"]
+
+[sub_resource type="Theme" id="Theme_7cjqn"]
+Button/fonts/font = ExtResource("3_vwf2c")
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtaxl")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LabelMargin" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LabelMargin"]
+layout_mode = 2
+theme = ExtResource("2_q3tlk")
+theme_override_font_sizes/font_size = 60
+text = "Unlikely Pair"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7cjqn")
+theme_override_font_sizes/font_size = 38
+text = "Play"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7cjqn")
+theme_override_font_sizes/font_size = 38
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

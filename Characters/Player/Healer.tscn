@@ -119,7 +119,7 @@ libraries = {
 wait_time = 0.7
 one_shot = true
 
-[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+[node name="DisplayNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(315, -195)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

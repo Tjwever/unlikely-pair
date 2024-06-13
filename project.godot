@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Unlikely-Pair"
-run/main_scene="res://Scenes/MainScene.tscn"
+run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DamageNumbers="*res://Scripts/DamageNumbers.gd"
+DisplayNumbers="*res://Scripts/DisplayNumbers.gd"
 
 [display]
 

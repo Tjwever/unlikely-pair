@@ -9,7 +9,7 @@ signal healer_defeated
 @onready var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"."
-@onready var damage_numbers_origin = $DamageNumbersOrigin
+@onready var display_numbers_origin = $DisplayNumbersOrigin
 
 @onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
@@ -37,7 +37,7 @@ func _ready():
 
 func take_damage(damage):
 	current_health -= damage
-	DamageNumbers.display_number(damage, damage_numbers_origin.global_position, false)
+	DisplayNumbers.display_number(damage, display_numbers_origin.global_position, false, false)
 	emit_signal("update_healer_health", current_health)
 
 	if current_health < 0:
@@ -67,6 +67,7 @@ func _process(_delta):
 
 func heal(amount):
 	current_health += amount
+	DisplayNumbers.display_number(amount, self.global_position, false, true)
 	emit_signal("update_healer_health", current_health)
 
 	if current_health > max_health:
