@@ -20,7 +20,7 @@ var defense := 3
 var attack_damge := 250
 var speed := 9.0
 var critical_hit_rate: int = 3
-var double_attack_rate: int = 60
+var double_attack_rate: int = 30
 var is_critical_hit: bool = false
 var is_double_attack: bool = false
 var isDead: bool = false
@@ -37,7 +37,6 @@ func _ready():
 func set_attack_timer():
 	timer.wait_time = speed_calculation
 	print("timer wait time: ", float(speed_calculation))
-	#print("Fighter attack wait time set to: ", timer.wait_time)
 
 
 func calculate_damage(atk_damage, enemy_defense):
@@ -89,7 +88,6 @@ func take_damage(damage):
 		print("death")
 
 
-# Example function to heal
 func heal(amount):
 	current_health += amount
 	DisplayNumbers.display_number(amount, self.global_position, false, true)

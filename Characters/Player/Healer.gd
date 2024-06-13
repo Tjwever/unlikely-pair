@@ -7,6 +7,7 @@ signal healer_defeated
 
 @onready var timer = $Timer
 @onready var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
+@onready var enemy = $"../Enemy"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"."
 @onready var display_numbers_origin = $DisplayNumbersOrigin
@@ -25,7 +26,7 @@ var attack_delay := false
 var allies = []
 var selected_ally_index := 0
 
-var isDead: bool = false
+var is_dead: bool = false
 
 func _ready():
 	healthbar.init_health(current_health)
@@ -45,13 +46,17 @@ func take_damage(damage):
 
 	if current_health == 0:
 		animation_player.play("death")
-		isDead = true
+		is_dead = true
 		emit_signal("healer_defeated")
 		print('healer death')
 
 func _process(_delta):
 	if Input.is_action_just_pressed("heal"):
-		if !attack_delay and !isDead:
+
+		if not is_instance_valid(enemy) or enemy.is_dead:
+			return
+
+		if !attack_delay and !is_dead:
 			animation_player.play("quick_heal")
 			#heal(quick_heal)
 			attack_delay = true

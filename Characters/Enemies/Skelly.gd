@@ -21,13 +21,14 @@ var current_health := 10000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
+var is_dead := false
 var big_attack_cooldown : int = 10
 var is_big_attack : bool = false
 
 func _ready():
 	healthbar.init_health(current_health)
 
-	if fighter.isDead and healer.isDead:
+	if fighter.isDead and healer.is_dead:
 		big_attack_timer.stop()
 		regular_attack_timer.stop()
 
@@ -38,7 +39,7 @@ func _ready():
 	big_attack_timer.start()
 
 func _process(_delta):
-	if fighter.isDead and healer.isDead:
+	if fighter.isDead and healer.is_dead:
 		big_attack_timer.stop()
 		regular_attack_timer.stop()
 
@@ -55,13 +56,13 @@ func choose_target():
 			return healer
 		return fighter
 	else:
-		if healer.isDead:
+		if healer.is_dead:
 			return fighter
 		return healer
 
 func attack():
 	var target = choose_target()
-	if fighter.isDead and healer.isDead:
+	if fighter.isDead and healer.is_dead:
 		regular_attack_timer.stop()
 
 	if target:
@@ -70,7 +71,7 @@ func attack():
 		if is_big_attack:
 			animation_player.play("big_attack")
 			await get_tree().create_timer(0.75).timeout
-			if fighter.isDead or healer.isDead:
+			if fighter.isDead or healer.is_dead:
 				target.take_damage(damage_dealt)
 			else:
 				fighter.take_damage(damage_dealt + 25) # 25 is arbitrary number for now
@@ -92,6 +93,7 @@ func take_damage(damage, is_critical_hit):
 		current_health = 0
 
 	if current_health == 0:
+		is_dead = true
 		regular_attack_timer.stop()
 		animation_player.queue("death")
 		await get_tree().create_timer(1).timeout
@@ -112,7 +114,7 @@ func _on_timer_timeout():
 	attack()
 
 func _on_big_attack_timer_timeout():
-	if fighter.isDead or healer.isDead:
+	if fighter.isDead or healer.is_dead:
 		big_attack_timer.stop()
 	is_big_attack = true
 	big_attack_timer.start()

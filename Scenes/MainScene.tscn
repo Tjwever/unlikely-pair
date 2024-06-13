@@ -328,6 +328,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Return to main menu"
 
+[node name="Spacer" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 40
+
 [connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]
 [connection signal="update_enemy_health" from="Enemy" to="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]
 [connection signal="fighter_defeated" from="Fighter" to="." method="_on_fighter_fighter_defeated"]
