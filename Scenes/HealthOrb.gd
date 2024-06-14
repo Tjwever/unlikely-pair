@@ -8,15 +8,18 @@ var speed: float = 300.0
 
 var pause_position = self.global_position
 
+
 func _process(_delta):
 	if target:
 		if global_position.distance_to(target.global_position) < 10:
 			apply_heal()
 			queue_free()
 
+
 func heal_to_ally():
-	var direction = (target.global_position - pause_position)
+	var direction = target.global_position - pause_position
 	global_position += direction * speed
+
 
 func apply_heal():
 	if target.has_method("heal"):

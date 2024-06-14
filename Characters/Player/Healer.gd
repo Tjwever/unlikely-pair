@@ -31,15 +31,12 @@ var is_dead: bool = false
 func _ready():
 	healthbar.init_health(current_health)
 
-	await get_tree().create_timer(0.5).timeout	
-
+	await get_tree().create_timer(0.5).timeout
 	var tween = get_tree().create_tween()
-	
 	tween.tween_property(self, "position", Vector2(1370, 461), 0.4)
-	
 	await get_tree().create_timer(1).timeout
-	
 	tween.kill()
+
 	if fighter and healer:
 		allies = [fighter, healer]
 		hide_all_focus()

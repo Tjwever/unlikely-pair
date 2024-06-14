@@ -6,6 +6,7 @@ extends ProgressBar
 
 var health = 0
 
+
 func init_health(_health):
 	health = _health
 	max_value = health
@@ -15,6 +16,7 @@ func init_health(_health):
 	health_bar.max_value = health
 	health_bar.value = health
 	health_bar.modulate = Color(0, 0.808, 0.537, 0)
+
 
 func update_health(_health):
 	var prev_health = health
@@ -32,6 +34,7 @@ func update_health(_health):
 	else:
 		damage_bar.value = health
 
+
 func health_bar_fade_out():
 	await get_tree().create_timer(0.3).timeout
 	var fade_time = 0.3
@@ -43,14 +46,18 @@ func health_bar_fade_out():
 		await get_tree().create_timer(fade_step_time).timeout
 	health_bar.modulate.a = 0
 
+
 func _on_timer_timeout():
 	damage_bar.value = health
+
 
 func _on_enemy_update_enemy_health(_health):
 	update_health(_health)
 
+
 func _on_healer_update_healer_health(_health):
 	update_health(_health)
+
 
 func _on_fighter_update_fighter_health(_health):
 	update_health(_health)
