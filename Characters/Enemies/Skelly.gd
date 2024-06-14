@@ -28,6 +28,16 @@ var is_big_attack : bool = false
 func _ready():
 	healthbar.init_health(current_health)
 
+	await get_tree().create_timer(0.5).timeout	
+
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(self, "position", Vector2(500, 248), 0.2)
+	
+	await get_tree().create_timer(1).timeout
+	
+	tween.kill()
+
 	if fighter.isDead and healer.is_dead:
 		big_attack_timer.stop()
 		regular_attack_timer.stop()

@@ -30,6 +30,17 @@ var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
 
 func _ready():
 	healthbar.init_health(current_health)
+	
+	await get_tree().create_timer(0.5).timeout	
+
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(self, "position", Vector2(1227, 351), 0.3)
+	
+	await get_tree().create_timer(1).timeout
+	
+	tween.kill()
+
 	set_attack_timer()
 	timer.start()
 

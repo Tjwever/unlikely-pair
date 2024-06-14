@@ -3,14 +3,25 @@ extends Node2D
 @onready var end_game_canvas = $EndGameCanvas
 @onready var you_won = $EndGameCanvas/EndGameContainer/VBoxContainer/YouWon
 @onready var game_over = $EndGameCanvas/EndGameContainer/VBoxContainer/GameOver
+@onready var fight_ui = $FightUI
 
 var is_healer_dead: bool = false
 var is_fighter_dead: bool = false
 
 func _ready():
+	fight_ui.visible = false
+	await get_tree().create_timer(0.2).timeout
+	var tween = get_tree().create_tween()
+	tween.tween_property(fight_ui, "position", Vector2(930, 363), 0.2).set_ease(Tween.EASE_OUT)
+	
+	fight_ui.visible = true
 	end_game_canvas.visible = false
 	you_won.visible = false
 	game_over.visible = false
+	
+	await get_tree().create_timer(2).timeout
+	
+	fight_ui.visible = false
 
 func _process(_delta):
 	if is_fighter_dead and is_healer_dead:

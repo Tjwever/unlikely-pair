@@ -279,15 +279,15 @@ size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
 
 [node name="Enemy" parent="." instance=ExtResource("1_xwvg5")]
-position = Vector2(501, 248)
+position = Vector2(-436, 248)
 scale = Vector2(0.356553, 0.356553)
 
 [node name="Fighter" parent="." instance=ExtResource("2_jug8b")]
-position = Vector2(1227, 351)
+position = Vector2(2015, 351)
 scale = Vector2(0.1, 0.1)
 
 [node name="Healer" parent="." instance=ExtResource("3_a68mk")]
-position = Vector2(1370, 461)
+position = Vector2(2129, 461)
 scale = Vector2(0.1, 0.1)
 
 [node name="EndGameCanvas" type="CanvasLayer" parent="."]
@@ -332,6 +332,28 @@ text = "Return to main menu"
 layout_mode = 2
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 40
+
+[node name="FightUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 930.0
+offset_top = 184.0
+offset_right = 930.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fight" type="Label" parent="FightUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 62
+text = "FIGHT!"
 
 [connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]
 [connection signal="update_enemy_health" from="Enemy" to="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]
