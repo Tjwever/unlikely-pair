@@ -28,6 +28,7 @@ texture_margin_bottom = 24.0
 [resource]
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0.00784314, 0.105882, 1)
+Label/colors/font_shadow_color = Color(1, 1, 1, 0.0666667)
 Label/fonts/font = ExtResource("1_iteq5")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_quioa")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_0wtqn")
