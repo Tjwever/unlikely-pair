@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvr7nqncvbk3p"]
+[gd_scene load_steps=6 format=3 uid="uid://cvr7nqncvbk3p"]
 
 [ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_tewcl"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="2_q3tlk"]
 [ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="3_vwf2c"]
+[ext_resource type="AudioStream" uid="uid://pf661uucgfho" path="res://start-menu.wav" id="4_nxhk5"]
 
 [sub_resource type="Theme" id="Theme_7cjqn"]
 Button/fonts/font = ExtResource("3_vwf2c")
@@ -77,6 +78,10 @@ text = "Show tutorial?"
 [node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 button_pressed = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_nxhk5")
+autoplay = true
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

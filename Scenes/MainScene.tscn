@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=9 format=3 uid="uid://oyovxuu3dahk"]
 
 [ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
 [ext_resource type="PackedScene" uid="uid://de5qwi65rhdek" path="res://Scenes/healthbar.tscn" id="3_bcho7"]
+[ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://battle-music.wav" id="8_0ls7x"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_qjgyc")
@@ -354,6 +355,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 62
 text = "FIGHT!"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0ls7x")
+autoplay = true
 
 [connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]
 [connection signal="update_enemy_health" from="Enemy" to="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]

@@ -51,3 +51,7 @@ func _on_return_pressed():
 	#get_tree().paused = false
 	print("pressed")
 	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
+
+
+func _on_continue_pressed():
+	pass # Replace with function body.
