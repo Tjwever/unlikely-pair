@@ -334,6 +334,37 @@ layout_mode = 2
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 40
 
+[node name="PauseCanvas" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="PauseContainer" type="PanelContainer" parent="PauseCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseCanvas/PauseContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Continue" type="Button" parent="PauseCanvas/PauseContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Continue"
+
+[node name="Quit" type="Button" parent="PauseCanvas/PauseContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Quit"
+
+[node name="Spacer" type="MarginContainer" parent="PauseCanvas/PauseContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 40
+
 [node name="FightUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -367,3 +398,5 @@ autoplay = true
 [connection signal="healer_defeated" from="Healer" to="." method="_on_healer_healer_defeated"]
 [connection signal="update_healer_health" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Quit" to="." method="_on_return_pressed"]

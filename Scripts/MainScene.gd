@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var pause_canvas = $PauseCanvas
 @onready var end_game_canvas = $EndGameCanvas
 @onready var you_won = $EndGameCanvas/EndGameContainer/VBoxContainer/YouWon
 @onready var game_over = $EndGameCanvas/EndGameContainer/VBoxContainer/GameOver
@@ -30,7 +31,21 @@ func _process(_delta):
 		await get_tree().create_timer(1.3).timeout
 		end_game_canvas.visible = true
 		game_over.visible = true
-		#get_tree().paused = true
+
+
+func _input(event):
+	if event.is_action_pressed("pause"):
+		print('pressed')
+		toggle_pause_menu()
+
+
+func toggle_pause_menu():
+	if pause_canvas.visible:
+		pause_canvas.visible = false
+		get_tree().paused = false
+	else:
+		pause_canvas.visible = true
+		get_tree().paused = true
 
 
 func _on_enemy_enemy_defeated():
@@ -48,10 +63,11 @@ func _on_fighter_fighter_defeated():
 
 
 func _on_return_pressed():
-	#get_tree().paused = false
+	get_tree().paused = false
 	print("pressed")
 	get_tree().change_scene_to_file("res://Scenes/start_menu.tscn")
 
 
 func _on_continue_pressed():
-	pass # Replace with function body.
+	pause_canvas.visible = false
+	get_tree().paused = false
