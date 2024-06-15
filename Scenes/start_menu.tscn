@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvr7nqncvbk3p"]
 
-[ext_resource type="Script" path="res://Scenes/start_menu.gd" id="1_jtaxl"]
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_tewcl"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="2_q3tlk"]
 [ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="3_vwf2c"]
 
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jtaxl")
+script = ExtResource("1_tewcl")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

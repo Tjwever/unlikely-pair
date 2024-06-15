@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
-[ext_resource type="Script" path="res://Scenes/MainScene.gd" id="1_qjgyc"]
+[ext_resource type="Script" path="res://Scripts/MainScene.gd" id="1_qjgyc"]
 [ext_resource type="PackedScene" uid="uid://c75kvjd0027di" path="res://Characters/Enemies/Skelly.tscn" id="1_xwvg5"]
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
