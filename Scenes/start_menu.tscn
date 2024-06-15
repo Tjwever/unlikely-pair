@@ -59,5 +59,24 @@ theme = SubResource("Theme_7cjqn")
 theme_override_font_sizes/font_size = 38
 text = "Quit"
 
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 24
+text = "Show tutorial?"
+
+[node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

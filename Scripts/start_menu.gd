@@ -1,8 +1,12 @@
 extends Control
 
+@onready var check_box = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CheckBox
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Tutorial.tscn")
+	if check_box.button_pressed:
+		get_tree().change_scene_to_file("res://Scenes/Tutorial.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
 
 
 func _on_quit_pressed():
