@@ -166,6 +166,9 @@ wait_time = 0.85
 [node name="recharge_ap_timer" type="Timer" parent="."]
 wait_time = 1.2
 
+[node name="combo_window_timer" type="Timer" parent="."]
+wait_time = 0.8
+
 [node name="DisplayNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(315, -195)
 scale = Vector2(1, 1)
@@ -174,3 +177,4 @@ scale = Vector2(1, 1)
 [connection signal="timeout" from="medium_heal_delay_timer" to="." method="_on_medium_heal_delay_timeout"]
 [connection signal="timeout" from="heavy_heal_delay_timer" to="." method="_on_heavy_heal_delay_timeout"]
 [connection signal="timeout" from="recharge_ap_timer" to="." method="_on_recharge_ap_timer_timeout"]
+[connection signal="timeout" from="combo_window_timer" to="." method="_on_combo_window_timer_timeout"]

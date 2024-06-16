@@ -21,6 +21,7 @@ var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/
 @onready var medium_heal_delay_timer = $medium_heal_delay_timer
 @onready var heavy_heal_delay_timer = $heavy_heal_delay_timer
 @onready var recharge_ap_timer = $recharge_ap_timer
+@onready var combo_window_timer = $combo_window_timer
 
 @onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
@@ -34,6 +35,7 @@ var defense := 3
 var min_ap := 4
 var max_ap := 4
 var attack_delay := false
+var combo_array = []
 var allies = []
 var selected_ally_index := 0
 
@@ -85,6 +87,8 @@ func input_action(healing_amount, ability_point_deduction, timer):
 	if !attack_delay and !is_dead and min_ap >= ability_point_deduction:
 		if ability_point_deduction == 1:
 			animation_player.play("light_heal")
+			combo_array.append('l')
+			combo_window_timer.start()
 		elif ability_point_deduction == 2:
 			animation_player.play("medium_heal")
 		else:
@@ -96,6 +100,28 @@ func input_action(healing_amount, ability_point_deduction, timer):
 		attack_delay = true
 		timer.start()
 		launch_health_orb(healing_amount)
+		cast_special_ability()
+
+
+func cast_special_ability():
+	print('combo array: ', combo_array)
+	if combo_array == ['l', 'l', 'l', 'l']:
+		print('works')
+		regen()
+		combo_array = []
+	else:
+		print('nothing')
+
+
+func regen():
+	if selected_ally_index == 0:
+		for n in 8:
+			fighter.heal(8)
+			await get_tree().create_timer(0.8).timeout
+	else:
+		for n in 8:
+			self.heal(8)
+			await get_tree().create_timer(0.8).timeout
 
 
 func take_damage(damage):
@@ -200,3 +226,7 @@ func _on_recharge_ap_timer_timeout():
 	else:
 		min_ap += 1
 	emit_signal("update_min_ap", min_ap)
+
+
+func _on_combo_window_timer_timeout():
+	combo_array = []
