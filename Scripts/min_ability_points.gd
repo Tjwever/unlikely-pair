@@ -15,5 +15,6 @@ func update_ability_points(_ap):
 	ability_points = _ap
 	text = str(ability_points)
 
+
 func _on_healer_update_min_ap(_ability_points):
 	update_ability_points(_ability_points)

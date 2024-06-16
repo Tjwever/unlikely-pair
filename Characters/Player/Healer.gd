@@ -6,9 +6,12 @@ signal update_healer_health
 signal update_min_ap
 signal healer_defeated
 
-@onready var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
-@onready var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
-@onready var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/max_ability_points"
+@onready
+var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
+@onready
+var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
+@onready
+var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/max_ability_points"
 
 @onready var enemy = $"../Enemy"
 @onready var fighter = $"../Fighter"
@@ -18,7 +21,6 @@ signal healer_defeated
 @onready var medium_heal_delay_timer = $medium_heal_delay_timer
 @onready var heavy_heal_delay_timer = $heavy_heal_delay_timer
 @onready var recharge_ap_timer = $recharge_ap_timer
-
 
 @onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
@@ -41,6 +43,7 @@ var heavy_heal_amount := 15
 
 var is_dead: bool = false
 
+
 func _ready():
 	healthbar.init_health(current_health)
 	min_ability_points.text = str(min_ap)
@@ -62,41 +65,37 @@ func _process(_delta):
 	if not is_instance_valid(enemy) or enemy.is_dead:
 		return
 
-
 	if Input.is_action_just_pressed("light"):
 		input_action(light_heal_amount, 1, light_heal_delay_timer)
-
 
 	if Input.is_action_just_pressed("medium"):
 		input_action(medium_heal_amount, 2, medium_heal_delay_timer)
 
-
 	if Input.is_action_just_pressed("heavy"):
 		input_action(heavy_heal_amount, 3, heavy_heal_delay_timer)
 
-
 	if Input.is_action_just_pressed("select_up"):
 		selected_ally(-1)
-	
+
 	if Input.is_action_just_pressed("select_down"):
 		selected_ally(1)
 
 
 func input_action(healing_amount, ability_point_deduction, timer):
 	if !attack_delay and !is_dead and min_ap >= ability_point_deduction:
-			if ability_point_deduction == 1:
-				animation_player.play("light_heal")
-			elif ability_point_deduction == 2:
-				animation_player.play("medium_heal")
-			else:
-				animation_player.play("heavy_heal")
-				pass
-			min_ap -= ability_point_deduction
-			recharging_ap()
-			emit_signal("update_min_ap", min_ap)
-			attack_delay = true
-			timer.start()
-			launch_health_orb(healing_amount)
+		if ability_point_deduction == 1:
+			animation_player.play("light_heal")
+		elif ability_point_deduction == 2:
+			animation_player.play("medium_heal")
+		else:
+			animation_player.play("heavy_heal")
+			pass
+		min_ap -= ability_point_deduction
+		recharging_ap()
+		emit_signal("update_min_ap", min_ap)
+		attack_delay = true
+		timer.start()
+		launch_health_orb(healing_amount)
 
 
 func take_damage(damage):
@@ -111,7 +110,7 @@ func take_damage(damage):
 		animation_player.play("death")
 		is_dead = true
 		emit_signal("healer_defeated")
-		print('healer death')
+		print("healer death")
 
 
 func heal(amount):
@@ -122,6 +121,7 @@ func heal(amount):
 	if current_health > max_health:
 		current_health = max_health
 
+
 func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount: int):
 	var tween = get_tree().create_tween()
 
@@ -130,11 +130,20 @@ func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount
 	health_orb.heal_amount = amount
 	get_tree().current_scene.add_child(health_orb)
 
-	tween.tween_property(health_orb, "position", self.global_position + Vector2(-12,15), 0).set_ease(Tween.EASE_OUT)
-	tween.tween_property(health_orb, "scale", Vector2(0,0), 0)
-	tween.tween_property(health_orb, "scale", Vector2(1,1), 0.3)
-	tween.tween_property(health_orb, "position", self.global_position + Vector2(-35,10), 0.3).set_ease(Tween.EASE_OUT)
+	(
+		tween
+		. tween_property(health_orb, "position", self.global_position + Vector2(-12, 15), 0)
+		. set_ease(Tween.EASE_OUT)
+	)
+	tween.tween_property(health_orb, "scale", Vector2(0, 0), 0)
+	tween.tween_property(health_orb, "scale", Vector2(1, 1), 0.3)
+	(
+		tween
+		. tween_property(health_orb, "position", self.global_position + Vector2(-35, 10), 0.3)
+		. set_ease(Tween.EASE_OUT)
+	)
 	tween.tween_property(health_orb, "position", character.global_position, 0.3)
+
 
 func launch_health_orb(amount):
 	var orb = health_orb_scene.instantiate()
@@ -144,9 +153,11 @@ func launch_health_orb(amount):
 	else:
 		healing_animation(orb, self, amount)
 
+
 func hide_all_focus():
 	fighter_selected.hide()
 	healer_selected.hide()
+
 
 func update_focus_ui():
 	hide_all_focus()
@@ -154,6 +165,7 @@ func update_focus_ui():
 		fighter_selected.show()
 	elif selected_ally_index == 1:
 		healer_selected.show()
+
 
 func selected_ally(direction):
 	selected_ally_index += direction

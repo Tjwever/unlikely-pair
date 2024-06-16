@@ -35,7 +35,7 @@ func _process(_delta):
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-		print('pressed')
+		print("pressed")
 		toggle_pause_menu()
 
 
