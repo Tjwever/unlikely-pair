@@ -87,7 +87,7 @@ func input_action(healing_amount, ability_point_deduction, timer):
 	if !attack_delay and !is_dead and min_ap >= ability_point_deduction:
 		if ability_point_deduction == 1:
 			animation_player.play("light_heal")
-			combo_array.append('l')
+			combo_array.append("l")
 			combo_window_timer.start()
 		elif ability_point_deduction == 2:
 			animation_player.play("medium_heal")
@@ -104,13 +104,13 @@ func input_action(healing_amount, ability_point_deduction, timer):
 
 
 func cast_special_ability():
-	print('combo array: ', combo_array)
-	if combo_array == ['l', 'l', 'l', 'l']:
-		print('works')
+	print("combo array: ", combo_array)
+	if combo_array == ["l", "l", "l", "l"]:
+		print("works")
 		regen()
 		combo_array = []
 	else:
-		print('nothing')
+		print("nothing")
 
 
 func regen():

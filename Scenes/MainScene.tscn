@@ -25,6 +25,36 @@ scale = Vector2(2.50573, 2.48416)
 texture = ExtResource("1_81pdv")
 centered = false
 
+[node name="SpecialMoveNotifierUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpecialMoveNotifierUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.0
+offset_right = 182.0
+offset_bottom = 202.0
+grow_horizontal = 2
+
+[node name="Spacer" type="MarginContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_hfth5")
+
+[node name="SpecialMoveNotifierLabel" type="Label" parent="SpecialMoveNotifierUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Special Move Big DMG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="EnemySideUI" type="PanelContainer" parent="GameUI"]

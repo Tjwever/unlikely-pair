@@ -1,9 +1,11 @@
 extends Marker2D
 
-@export var damage_node : PackedScene
+@export var damage_node: PackedScene
+
 
 func _ready():
 	randomize()
+
 
 func popup():
 	var damage = damage_node.instantiate()
@@ -14,8 +16,10 @@ func popup():
 
 	get_tree().current_scene.add_child(damage)
 
+
 func _get_direction():
-	return Vector2(randf_range(-1,1), -randf()) * 46
+	return Vector2(randf_range(-1, 1), -randf()) * 46
+
 
 func _input(event):
 	if event.is_action_pressed("test"):

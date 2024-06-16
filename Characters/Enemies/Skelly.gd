@@ -7,12 +7,16 @@ signal enemy_defeated
 
 @onready
 var healthbar = $"../GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
+@onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
+@onready
+var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
 @onready var regular_attack_timer = $RegularAttackTimer
 @onready var big_attack_timer = $BigAttackTimer
 @onready var animation_player = $AnimationPlayer
 @onready var display_numbers_origin = $DisplayNumbersOrigin
+@onready var notification_timer = $NotificationTimer
 
 const BASE_WAIT_TIME = 2.0
 
@@ -82,6 +86,9 @@ func attack():
 		var damage_dealt = calculate_damage(attack_damge, target.defense)
 
 		if is_big_attack:
+			special_move_notifier_ui.visible = true
+			special_move_notifier_label.text = "Big Daddy Damage"
+			notification_timer.start()
 			animation_player.play("big_attack")
 			await get_tree().create_timer(0.75).timeout
 			if fighter.isDead or healer.is_dead:
@@ -136,3 +143,7 @@ func _on_big_attack_timer_timeout():
 		big_attack_timer.stop()
 	is_big_attack = true
 	big_attack_timer.start()
+
+
+func _on_notification_timer_timeout():
+	special_move_notifier_ui.visible = false
