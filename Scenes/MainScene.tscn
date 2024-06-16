@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=10 format=3 uid="uid://oyovxuu3dahk"]
 
 [ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
 [ext_resource type="PackedScene" uid="uid://de5qwi65rhdek" path="res://Scenes/healthbar.tscn" id="3_bcho7"]
+[ext_resource type="Script" path="res://Scripts/min_ability_points.gd" id="5_prxta"]
 [ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://battle-music.wav" id="8_0ls7x"]
 
 [node name="MainScene" type="Node2D"]
@@ -221,6 +222,40 @@ text = "Healer"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -12.0
+offset_right = 21.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="min_ability_points" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "9"
+horizontal_alignment = 1
+script = ExtResource("5_prxta")
+
+[node name="divider" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "/"
+horizontal_alignment = 1
+
+[node name="max_ability_points" type="Label" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="Healthbar" parent="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_bcho7")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -397,6 +432,7 @@ autoplay = true
 [connection signal="update_fighter_health" from="Fighter" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_fighter_update_fighter_health"]
 [connection signal="healer_defeated" from="Healer" to="." method="_on_healer_healer_defeated"]
 [connection signal="update_healer_health" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]
+[connection signal="update_min_ap" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points" method="_on_healer_update_min_ap"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Quit" to="." method="_on_return_pressed"]
