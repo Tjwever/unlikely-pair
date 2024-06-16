@@ -10,6 +10,8 @@ var healthbar = $"../GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContai
 @onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
 @onready
 var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
 @onready var regular_attack_timer = $RegularAttackTimer
@@ -86,6 +88,7 @@ func attack():
 		var damage_dealt = calculate_damage(attack_damge, target.defense)
 
 		if is_big_attack:
+			panel_container.theme_type_variation = "EnemyTheme"
 			special_move_notifier_ui.visible = true
 			special_move_notifier_label.text = "Big Daddy Damage"
 			notification_timer.start()

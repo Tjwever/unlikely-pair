@@ -8,6 +8,10 @@ signal healer_defeated
 
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
+@onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
+@onready var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+
 @onready
 var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
 @onready
@@ -22,6 +26,7 @@ var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/
 @onready var heavy_heal_delay_timer = $heavy_heal_delay_timer
 @onready var recharge_ap_timer = $recharge_ap_timer
 @onready var combo_window_timer = $combo_window_timer
+@onready var notification_timer = $notification_timer
 
 @onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
@@ -115,10 +120,12 @@ func cast_special_ability():
 
 func regen():
 	if selected_ally_index == 0:
+		show_special_ability_notification('Regen!')
 		for n in 8:
 			fighter.heal(8)
 			await get_tree().create_timer(0.8).timeout
 	else:
+		show_special_ability_notification('Regen!')
 		for n in 8:
 			self.heal(8)
 			await get_tree().create_timer(0.8).timeout
@@ -180,6 +187,12 @@ func launch_health_orb(amount):
 		healing_animation(orb, self, amount)
 
 
+func show_special_ability_notification(_label):
+	panel_container.theme_type_variation = "HealerTheme"
+	special_move_notifier_ui.visible = true
+	special_move_notifier_label.text = _label
+	notification_timer.start()
+
 func hide_all_focus():
 	fighter_selected.hide()
 	healer_selected.hide()
@@ -230,3 +243,7 @@ func _on_recharge_ap_timer_timeout():
 
 func _on_combo_window_timer_timeout():
 	combo_array = []
+
+
+func _on_notification_timer_timeout():
+	special_move_notifier_ui.visible = false

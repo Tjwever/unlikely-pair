@@ -153,6 +153,9 @@ libraries = {
 "": SubResource("AnimationLibrary_3aatl")
 }
 
+[node name="DisplayNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(315, -195)
+
 [node name="light_heal_delay_timer" type="Timer" parent="."]
 wait_time = 0.45
 one_shot = true
@@ -169,11 +172,12 @@ wait_time = 1.2
 [node name="combo_window_timer" type="Timer" parent="."]
 wait_time = 0.8
 
-[node name="DisplayNumbersOrigin" type="Node2D" parent="."]
-position = Vector2(315, -195)
+[node name="notification_timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="timeout" from="light_heal_delay_timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="medium_heal_delay_timer" to="." method="_on_medium_heal_delay_timeout"]
 [connection signal="timeout" from="heavy_heal_delay_timer" to="." method="_on_heavy_heal_delay_timeout"]
 [connection signal="timeout" from="recharge_ap_timer" to="." method="_on_recharge_ap_timer_timeout"]
 [connection signal="timeout" from="combo_window_timer" to="." method="_on_combo_window_timer_timeout"]
+[connection signal="timeout" from="notification_timer" to="." method="_on_notification_timer_timeout"]

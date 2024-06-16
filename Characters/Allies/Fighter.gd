@@ -7,8 +7,13 @@ signal fighter_defeated
 
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
+@onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
+@onready var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+
 @onready var enemy = $"../Enemy"
 @onready var timer = $Timer
+@onready var notification_timer = $NotificationTimer
 @onready var animation_player = $AnimationPlayer
 @onready var display_numbers_origin = $DisplayNumbersOrigin
 
@@ -64,8 +69,13 @@ func attack():
 
 		animation_player.play("quick_attack")
 		await get_tree().create_timer(0.32).timeout
-		#print('Fighter deals ', damage_dealt)
+
 		if is_double_attack:
+			panel_container.theme_type_variation = "FighterTheme"
+			special_move_notifier_ui.visible = true
+			special_move_notifier_label.text = "Double Strike!"
+			notification_timer.start()
+
 			animation_player.play("double_attack")
 			await get_tree().create_timer(0.1).timeout
 			enemy.take_damage(damage_dealt - double_attack_damage, is_critical_hit)
@@ -110,3 +120,7 @@ func is_alive():
 
 func _on_timer_timeout():
 	attack()
+
+
+func _on_notification_timer_timeout():
+	special_move_notifier_ui.visible = false

@@ -156,9 +156,13 @@ libraries = {
 "": SubResource("AnimationLibrary_iqqwl")
 }
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="DisplayNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(240, -60)
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="NotificationTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NotificationTimer" to="." method="_on_notification_timer_timeout"]

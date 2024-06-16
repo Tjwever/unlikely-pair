@@ -1,8 +1,32 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cx02ixemps6jx"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cx02ixemps6jx"]
 
+[ext_resource type="Texture2D" uid="uid://dx2fra281db2n" path="res://unlikely-pair-theme-enemy.png" id="1_7dmmq"]
 [ext_resource type="Texture2D" uid="uid://dh0f6ol5fkxuq" path="res://unlikely-pair-theme.png" id="1_61lvs"]
 [ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="1_iteq5"]
+[ext_resource type="Texture2D" uid="uid://cdubkgrukmma3" path="res://unlikely-pair-theme-healer.png" id="1_jtmym"]
 [ext_resource type="Texture2D" uid="uid://4hn4ft1lvuja" path="res://unlikely-pair-progressbar.png" id="2_h7kot"]
+[ext_resource type="Texture2D" uid="uid://bout3js3qq2c8" path="res://unlikely-pair-theme-fighter.png" id="2_vn86p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ce5q"]
+texture = ExtResource("1_7dmmq")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o8nam"]
+texture = ExtResource("2_vn86p")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fe0pa"]
+texture = ExtResource("1_jtmym")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quioa"]
 texture = ExtResource("1_61lvs")
@@ -26,6 +50,12 @@ texture_margin_right = 24.0
 texture_margin_bottom = 24.0
 
 [resource]
+EnemyTheme/base_type = &"PanelContainer"
+EnemyTheme/styles/panel = SubResource("StyleBoxTexture_7ce5q")
+FighterTheme/base_type = &"PanelContainer"
+FighterTheme/styles/panel = SubResource("StyleBoxTexture_o8nam")
+HealerTheme/base_type = &"PanelContainer"
+HealerTheme/styles/panel = SubResource("StyleBoxTexture_fe0pa")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0.00784314, 0.105882, 1)
 Label/colors/font_shadow_color = Color(1, 1, 1, 0.0666667)
