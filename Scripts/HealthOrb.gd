@@ -16,11 +16,6 @@ func _process(_delta):
 			queue_free()
 
 
-func heal_to_ally():
-	var direction = target.global_position - pause_position
-	global_position += direction * speed
-
-
 func apply_heal():
 	if target.has_method("heal"):
 		target.heal(heal_amount)

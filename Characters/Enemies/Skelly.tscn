@@ -139,6 +139,7 @@ position = Vector2(324.999, -47.2221)
 
 [node name="NotificationTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [connection signal="timeout" from="RegularAttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BigAttackTimer" to="." method="_on_big_attack_timer_timeout"]

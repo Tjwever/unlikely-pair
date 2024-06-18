@@ -8,7 +8,8 @@ signal fighter_defeated
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
 @onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
-@onready var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready
+var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
 @onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 
 @onready var enemy = $"../Enemy"
@@ -106,9 +107,12 @@ func take_damage(damage):
 
 
 func heal(amount):
-	current_health += amount
-	DisplayNumbers.display_number(amount, self.global_position, false, true)
-	emit_signal("update_fighter_health", current_health)
+	if isDead:
+		current_health = 0
+	else:
+		current_health += amount
+		DisplayNumbers.display_number(amount, self.global_position, false, true)
+		emit_signal("update_fighter_health", current_health)
 
 	if current_health > max_health:
 		current_health = max_health
