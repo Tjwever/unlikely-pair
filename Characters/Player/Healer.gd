@@ -13,6 +13,10 @@ var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxConta
 @onready
 var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
 @onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+@onready var heal_input_1 = $HealInputContainer/HealInput1
+@onready var heal_input_2 = $HealInputContainer/HealInput2
+@onready var heal_input_3 = $HealInputContainer/HealInput3
+@onready var heal_input_4 = $HealInputContainer/HealInput4
 
 @onready
 var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
@@ -31,6 +35,7 @@ var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/
 @onready var combo_window_timer = $combo_window_timer
 @onready var notification_timer = $notification_timer
 
+#Misc
 @onready var animation_player = $AnimationPlayer
 @export var health_orb_scene: PackedScene
 
@@ -50,10 +55,18 @@ var heavy_heal_amount := 15
 
 var is_dead: bool = false
 
+var origin_point := Vector2(-120, 290)
+var indicator_position1 := Vector2(40, -35)
+var indicator_position2 := Vector2(-205, 295)
+var indicator_position3 := Vector2(-205, 630)
+var indicator_position4 := Vector2(40, 950)
+
 const LIGHT := "light"
 const MEDIUM := "medium"
 const HEAVY := "heavy"
-
+const LIGHT_HEAL_INDICATOR = preload("res://Assets/light-heal-indicator.png")
+const MEDIUM_HEAL_INDICATOR = preload("res://Assets/medium-heal-indicator.png")
+const HEAVY_HEAL_INDICATOR = preload("res://Assets/heavy-heal-indicator.png")
 
 func _ready():
 	healthbar.init_health(current_health)
@@ -93,18 +106,20 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("select_down"):
 		selected_ally(1)
-	#print('time left: ', combo_window_timer.time_left)
 
 
 func input_action(ability_point_deduction):
 #TODO CHECK FOR EXTRA COMBO ARRAY INPUTS - have to think of If combo array length is > than the max ap, you can't fire orb
-	if !attack_delay and !is_dead and min_ap >= ability_point_deduction:
+	if !attack_delay and !is_dead and min_ap >= ability_point_deduction and combo_array.size() < 4:
 		if ability_point_deduction == 1:
 			combo_array.append(LIGHT)
+			heal_input_icon_show()
 		elif ability_point_deduction == 2:
 			combo_array.append(MEDIUM)
+			heal_input_icon_show()
 		else:
 			combo_array.append(HEAVY)
+			heal_input_icon_show()
 
 		animation_player.play("heal_button_press")
 		min_ap -= ability_point_deduction
@@ -114,7 +129,18 @@ func input_action(ability_point_deduction):
 
 func release_combo():
 	var local_array = combo_array.duplicate()
-	#combo_array.clear()
+	var _i = 0
+	print('combo array: ', combo_array)
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(heal_input_1, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_1, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_2, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_2, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_3, "position", origin_point, 0.1)	
+	tween.tween_property(heal_input_3, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_4, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_4, "scale", Vector2(0,0), 0.1)
 
 	for _heal in local_array:
 		if _heal == LIGHT:
@@ -123,14 +149,46 @@ func release_combo():
 			launch_health_orb(medium_heal_amount)
 		else:
 			launch_health_orb(heavy_heal_amount)
+		_i += 1
 		await get_tree().create_timer(0.3).timeout
 		combo_array.remove_at(0)
 	cast_special_ability(local_array)
 
 
+func heal_input_icon_show():
+	var local_array = combo_array.duplicate()
+	var index = 1
+
+	for _input in local_array:
+		heal_icon_check(index, local_array, 0, heal_input_1, indicator_position1)
+		heal_icon_check(index, local_array, 1, heal_input_2, indicator_position2)
+		heal_icon_check(index, local_array, 2, heal_input_3, indicator_position3)
+		heal_icon_check(index, local_array, 3, heal_input_4, indicator_position4)
+
+		index += 1
+
+
+func heal_icon_check(i :int, array :Array, index_check :int, input_type, pos):
+	if i == index_check + 1:
+		if array[index_check] == LIGHT:
+			input_type.texture = LIGHT_HEAL_INDICATOR
+		elif array[index_check] == MEDIUM:
+			input_type.texture = MEDIUM_HEAL_INDICATOR
+		else:
+			input_type.texture = HEAVY_HEAL_INDICATOR
+
+		input_type.visible = true
+		
+		var tween = input_type.get_node_or_null("Tween")
+		if tween:
+			tween.stop_all()
+		else:
+			tween = input_type.create_tween()
+		tween.tween_property(input_type, "scale", Vector2(1,1), 0.1)
+		tween.tween_property(input_type, "position", pos, 0.15)
+
+
 func cast_special_ability(_combo_array: Array):
-	print("combo array: ", _combo_array)
-	print("time left:", combo_window_timer.time_left)
 	if _combo_array == [LIGHT, LIGHT, LIGHT, LIGHT]:
 		regen()
 	elif _combo_array == [MEDIUM, MEDIUM]:
@@ -182,18 +240,6 @@ func take_damage(damage):
 		print("healer death")
 
 
-func heal(amount):
-	if is_dead:
-		current_health = 0
-	else:
-		current_health += amount
-		DisplayNumbers.display_number(amount, self.global_position + Vector2(10, -35), false, true)
-		emit_signal("update_healer_health", current_health)
-
-	if current_health > max_health:
-		current_health = max_health
-
-
 func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount: int):
 	var tween = get_tree().create_tween()
 
@@ -204,7 +250,7 @@ func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount
 
 	(
 		tween
-		. tween_property(health_orb, "position", self.global_position + Vector2(-12, 15), 0)
+		. tween_property(health_orb, "position", self.global_position + Vector2(-35, 15), 0)
 		. set_ease(Tween.EASE_OUT)
 	)
 	tween.tween_property(health_orb, "scale", Vector2(0, 0), 0)
@@ -219,7 +265,7 @@ func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount
 
 func launch_health_orb(amount):
 	var orb = health_orb_scene.instantiate()
-	print("launch orb")
+	#print("launch orb")
 	if selected_ally_index == 0:
 		if fighter.isDead:
 			healing_animation(orb, fighter, 0)
@@ -228,6 +274,18 @@ func launch_health_orb(amount):
 		if self.is_dead:
 			healing_animation(orb, self, 0)
 		healing_animation(orb, self, amount)
+
+
+func heal(amount):
+	if is_dead:
+		current_health = 0
+	else:
+		current_health += amount
+		DisplayNumbers.display_number(amount, self.global_position + Vector2(10, -35), false, true)
+		emit_signal("update_healer_health", current_health)
+
+	if current_health > max_health:
+		current_health = max_health
 
 
 func show_special_ability_notification(_label):
@@ -275,7 +333,6 @@ func _on_recharge_ap_timer_timeout():
 
 func _on_combo_window_timer_timeout():
 	release_combo()
-	#combo_array = []
 
 
 func _on_notification_timer_timeout():
