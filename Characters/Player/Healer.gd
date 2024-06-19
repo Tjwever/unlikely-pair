@@ -68,6 +68,7 @@ const LIGHT_HEAL_INDICATOR = preload("res://Assets/light-heal-indicator.png")
 const MEDIUM_HEAL_INDICATOR = preload("res://Assets/medium-heal-indicator.png")
 const HEAVY_HEAL_INDICATOR = preload("res://Assets/heavy-heal-indicator.png")
 
+
 func _ready():
 	healthbar.init_health(current_health)
 	min_ability_points.text = str(min_ap)
@@ -130,17 +131,17 @@ func input_action(ability_point_deduction):
 func release_combo():
 	var local_array = combo_array.duplicate()
 	var _i = 0
-	print('combo array: ', combo_array)
+	print("combo array: ", combo_array)
 	var tween = get_tree().create_tween()
-	
+
 	tween.tween_property(heal_input_1, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_1, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_1, "scale", Vector2(0, 0), 0.1)
 	tween.tween_property(heal_input_2, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_2, "scale", Vector2(0,0), 0.1)
-	tween.tween_property(heal_input_3, "position", origin_point, 0.1)	
-	tween.tween_property(heal_input_3, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_2, "scale", Vector2(0, 0), 0.1)
+	tween.tween_property(heal_input_3, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_3, "scale", Vector2(0, 0), 0.1)
 	tween.tween_property(heal_input_4, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_4, "scale", Vector2(0,0), 0.1)
+	tween.tween_property(heal_input_4, "scale", Vector2(0, 0), 0.1)
 
 	for _heal in local_array:
 		if _heal == LIGHT:
@@ -168,7 +169,7 @@ func heal_input_icon_show():
 		index += 1
 
 
-func heal_icon_check(i :int, array :Array, index_check :int, input_type, pos):
+func heal_icon_check(i: int, array: Array, index_check: int, input_type, pos):
 	if i == index_check + 1:
 		if array[index_check] == LIGHT:
 			input_type.texture = LIGHT_HEAL_INDICATOR
@@ -178,13 +179,13 @@ func heal_icon_check(i :int, array :Array, index_check :int, input_type, pos):
 			input_type.texture = HEAVY_HEAL_INDICATOR
 
 		input_type.visible = true
-		
+
 		var tween = input_type.get_node_or_null("Tween")
 		if tween:
 			tween.stop_all()
 		else:
 			tween = input_type.create_tween()
-		tween.tween_property(input_type, "scale", Vector2(1,1), 0.1)
+		tween.tween_property(input_type, "scale", Vector2(1, 1), 0.1)
 		tween.tween_property(input_type, "position", pos, 0.15)
 
 
