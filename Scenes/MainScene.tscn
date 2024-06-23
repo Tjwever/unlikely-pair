@@ -357,7 +357,6 @@ position = Vector2(2129, 461)
 scale = Vector2(0.1, 0.1)
 
 [node name="EndGameCanvas" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="EndGameContainer" type="PanelContainer" parent="EndGameCanvas"]
 anchors_preset = 15
@@ -389,12 +388,21 @@ theme_override_font_sizes/font_size = 64
 text = "Game Over!"
 horizontal_alignment = 1
 
+[node name="Again" type="Button" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Fight Again?"
+
+[node name="Spacer1" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
 [node name="Return" type="Button" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Return to main menu"
 
-[node name="Spacer" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+[node name="BottomSpacer" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 40
@@ -463,6 +471,7 @@ autoplay = true
 [connection signal="healer_defeated" from="Healer" to="." method="_on_healer_healer_defeated"]
 [connection signal="update_healer_health" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]
 [connection signal="update_min_ap" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points" method="_on_healer_update_min_ap"]
+[connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Again" to="." method="_on_again_pressed"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Quit" to="." method="_on_return_pressed"]

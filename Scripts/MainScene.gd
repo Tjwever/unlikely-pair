@@ -71,3 +71,7 @@ func _on_return_pressed():
 func _on_continue_pressed():
 	pause_canvas.visible = false
 	get_tree().paused = false
+
+
+func _on_again_pressed():
+	get_tree().reload_current_scene()
