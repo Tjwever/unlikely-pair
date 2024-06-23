@@ -110,7 +110,6 @@ func _process(_delta):
 
 
 func input_action(ability_point_deduction):
-#TODO CHECK FOR EXTRA COMBO ARRAY INPUTS - have to think of If combo array length is > than the max ap, you can't fire orb
 	if !attack_delay and !is_dead and min_ap >= ability_point_deduction and combo_array.size() < 4:
 		if ability_point_deduction == 1:
 			combo_array.append(LIGHT)
