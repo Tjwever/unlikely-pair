@@ -23,11 +23,14 @@ var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/Panel
 const BASE_WAIT_TIME = 2.0
 
 var allies := [fighter, healer]
-var max_health := 10000
-var current_health := 10000
+var max_health := 1000
+var current_health := 1000
+#var max_health := 10000
+#var current_health := 10000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
+var exp_given := 100
 var is_dead := false
 var big_attack_cooldown: int = 10
 var is_big_attack: bool = false
