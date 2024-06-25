@@ -30,7 +30,7 @@ var current_health := 1000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
-var exp_given := 100
+var exp_given := 300
 var is_dead := false
 var big_attack_cooldown: int = 10
 var is_big_attack: bool = false
@@ -122,6 +122,8 @@ func take_damage(damage, is_critical_hit):
 
 	if current_health == 0:
 		is_dead = true
+		CharacterState.gain_experience("healer", exp_given)
+		CharacterState.gain_experience("fighter", exp_given)
 		regular_attack_timer.stop()
 		animation_player.queue("death")
 		await get_tree().create_timer(1).timeout

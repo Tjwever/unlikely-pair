@@ -1,7 +1,8 @@
 extends Node
 
 var characters = {
-	"healer": {
+	"healer":
+	{
 		"type": "healer",
 		"max_health": 200,
 		"current_health": 200,
@@ -14,7 +15,8 @@ var characters = {
 		"experience": 0,
 		"level": 1,
 	},
-	"fighter": {
+	"fighter":
+	{
 		"type": "fighter",
 		"max_health": 400,
 		"current_health": 400,
@@ -27,6 +29,7 @@ var characters = {
 		"level": 1,
 	},
 }
+
 
 func load_character_data(character_name):
 	if characters.has(character_name):
@@ -48,6 +51,7 @@ func gain_experience(character_name, amount):
 		characters[character_name]["experience"] += amount
 		check_level_up(character_name)
 	pass
+
 
 func check_level_up(character_name):
 	if characters.has(character_name):

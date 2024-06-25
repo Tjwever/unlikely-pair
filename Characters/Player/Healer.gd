@@ -88,7 +88,6 @@ func _ready():
 
 func _process(_delta):
 	if not is_instance_valid(enemy) or enemy.is_dead:
-		CharacterState.gain_experience("healer", enemy.exp_given)
 		return
 
 	if Input.is_action_just_pressed("light"):

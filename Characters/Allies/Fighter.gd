@@ -101,7 +101,6 @@ func attack():
 			enemy.take_damage(damage_dealt, is_critical_hit)
 		is_critical_hit = false
 	else:
-		CharacterState.gain_experience("fighter", enemy.exp_given)
 		timer.stop()
 
 
