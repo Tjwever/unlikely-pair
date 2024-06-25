@@ -9,7 +9,6 @@ func _process(_delta):
 		get_tree().change_scene_to_file("res://Scenes/MainScene.tscn")
 
 
-
 func _on_play_pressed():
 	if check_box.button_pressed:
 		get_tree().change_scene_to_file("res://Scenes/Tutorial.tscn")
