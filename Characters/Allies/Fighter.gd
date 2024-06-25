@@ -20,21 +20,35 @@ var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/Panel
 
 const BASE_WAIT_TIME = 1
 
-var max_health := 400
-var current_health := 400
-var defense := 3
-var attack_damge := 250
-var speed := 9.0
-var critical_hit_rate: int = 3
-var double_attack_rate: int = 30
+var max_health
+var current_health
+var defense
+var attack_damage
+var speed
+var critical_hit_rate
+var double_attack_rate
+var level
 var is_critical_hit: bool = false
 var is_double_attack: bool = false
 var isDead: bool = false
 
-var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
-
 
 func _ready():
+	var fighter_data = CharacterState.load_character_data("fighter")
+
+	print("Figter is level ", fighter_data["level"])
+
+	if fighter_data:
+		max_health = fighter_data["max_health"]
+		current_health = fighter_data["current_health"]
+		defense = fighter_data["defense"]
+		attack_damage = fighter_data["attack_damage"]
+		speed = fighter_data["speed"]
+		critical_hit_rate = fighter_data["critical_hit_rate"]
+		double_attack_rate = fighter_data["double_attack_rate"]
+		level = fighter_data["level"]
+
+	print("fighter's health: ", max_health)
 	healthbar.init_health(current_health)
 
 	await get_tree().create_timer(0.5).timeout
@@ -48,8 +62,9 @@ func _ready():
 
 
 func set_attack_timer():
+	var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
+
 	timer.wait_time = speed_calculation
-	print("timer wait time: ", float(speed_calculation))
 
 
 func calculate_damage(atk_damage, enemy_defense):
@@ -63,7 +78,7 @@ func calculate_damage(atk_damage, enemy_defense):
 
 func attack():
 	if enemy.current_health != 0:
-		var damage_dealt = calculate_damage(attack_damge, enemy.defense)
+		var damage_dealt = calculate_damage(attack_damage, enemy.defense)
 		var double_attack_damage = randi_range(0, damage_dealt / 2)
 
 		is_double_attack = (randi() % 100) < double_attack_rate
@@ -86,6 +101,7 @@ func attack():
 			enemy.take_damage(damage_dealt, is_critical_hit)
 		is_critical_hit = false
 	else:
+		CharacterState.gain_experience("fighter", enemy.exp_given)
 		timer.stop()
 
 
