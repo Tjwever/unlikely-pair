@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1u2dclprox6h"
-path="res://.godot/imported/tavern-tilemap.png-029208d147c226fe2bcc97da88dd7681.ctex"
+path="res://.godot/imported/tavern-tilemap.png-f57e1436268eb19a121c64e9dedfd9fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tavern-tilemap.png"
-dest_files=["res://.godot/imported/tavern-tilemap.png-029208d147c226fe2bcc97da88dd7681.ctex"]
+source_file="res://Assets/TileMaps/tavern-tilemap.png"
+dest_files=["res://.godot/imported/tavern-tilemap.png-f57e1436268eb19a121c64e9dedfd9fc.ctex"]
 
 [params]
 
