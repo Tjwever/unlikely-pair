@@ -39,19 +39,25 @@ var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/
 @onready var animation_player = $AnimationPlayer
 @export var health_orb_scene: PackedScene
 
-var max_health := 200
-var current_health := 200
-var defense := 3
-var min_ap := 4
-var max_ap := 4
+#var max_health := 200
+#var current_health := 200
+#var defense := 3
+#var min_ap := 4
+#var max_ap := 4
+var max_health
+var current_health
+var defense
+var min_ap
+var max_ap
+var level
 var attack_delay := false
 var combo_array = []
 var allies = []
 var selected_ally_index := 0
 
-var light_heal_amount := 5
-var medium_heal_amount := 10
-var heavy_heal_amount := 15
+var light_heal_amount
+var medium_heal_amount
+var heavy_heal_amount
 
 var is_dead: bool = false
 
@@ -70,6 +76,20 @@ const HEAVY_HEAL_INDICATOR = preload("res://Assets/heavy-heal-indicator.png")
 
 
 func _ready():
+	var healer_data = CharacterState.load_character_data("healer")
+	print("Healer is level ", healer_data["level"])
+
+	if healer_data:
+		max_health = healer_data["max_health"]
+		current_health = healer_data["current_health"]
+		defense = healer_data["defense"]
+		min_ap = healer_data["min_ap"]
+		max_ap = healer_data["max_ap"]
+		light_heal_amount = healer_data["light_heal_amount"]
+		medium_heal_amount = healer_data["medium_heal_amount"]
+		heavy_heal_amount = healer_data["heavy_heal_amount"]
+		level = healer_data["level"]
+
 	healthbar.init_health(current_health)
 	min_ability_points.text = str(min_ap)
 	max_ability_points.text = str(max_ap)
