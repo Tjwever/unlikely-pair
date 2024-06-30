@@ -38,10 +38,7 @@ var enemies = {
 }
 
 
-#func gain_experience(character_name, amount):
-#if characters.has(character_name):
-#characters[character_name]["experience"] += amount
-#check_level_up(character_name)
+# eventually, this should be something like 'load_enemy_data'
 func get_kill_count(enemy):
 	if enemies.has(enemy):
 		return enemies[enemy]["kill_count"]
