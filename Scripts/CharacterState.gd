@@ -9,9 +9,9 @@ var characters = {
 		"defense": 3,
 		"min_ap": 4,
 		"max_ap": 4,
-		"light_heal": 5,
-		"medium_heal": 10,
-		"heavy_heal": 15,
+		"light_heal_amount": 5,
+		"medium_heal_amount": 10,
+		"heavy_heal_amount": 15,
 		"experience": 0,
 		"level": 1,
 	},
@@ -29,6 +29,27 @@ var characters = {
 		"level": 1,
 	},
 }
+
+var enemies = {
+	"skelly":
+	{
+		"kill_count": 0,
+	}
+}
+
+
+#func gain_experience(character_name, amount):
+#if characters.has(character_name):
+#characters[character_name]["experience"] += amount
+#check_level_up(character_name)
+func get_kill_count(enemy):
+	if enemies.has(enemy):
+		return enemies[enemy]["kill_count"]
+
+
+func set_kill_count(enemy):
+	if enemies.has(enemy):
+		enemies[enemy]["kill_count"] += 1
 
 
 func load_character_data(character_name):
@@ -50,7 +71,6 @@ func gain_experience(character_name, amount):
 	if characters.has(character_name):
 		characters[character_name]["experience"] += amount
 		check_level_up(character_name)
-	pass
 
 
 func check_level_up(character_name):
@@ -68,9 +88,9 @@ func check_level_up(character_name):
 					character["current_health"] += round(character["max_health"] * 0.12)
 
 					if character["level"] % 3 == 0:
-						character["light_heal"] += 2
-						character["medium_heal"] += 4
-						character["heavy_heal"] += 6
+						character["light_heal_amount"] += 2
+						character["medium_heal_amount"] += 4
+						character["heavy_heal_amount"] += 6
 					if character["level"] % 5 == 0:
 						character["min_ap"] += 1
 						character["max_ap"] += 1
