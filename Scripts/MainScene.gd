@@ -49,7 +49,6 @@ func toggle_pause_menu():
 
 
 func _on_enemy_enemy_defeated():
-	#get_tree().paused = true
 	end_game_canvas.visible = true
 	you_won.visible = true
 
