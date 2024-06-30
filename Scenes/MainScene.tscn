@@ -395,7 +395,18 @@ text = "Fight Again?"
 
 [node name="Spacer1" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ToTavern" type="Button" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Return to Tavern"
+
+[node name="Spacer2" type="MarginContainer" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Return" type="Button" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
 layout_mode = 2
@@ -472,6 +483,7 @@ autoplay = true
 [connection signal="update_healer_health" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar" method="_on_healer_update_healer_health"]
 [connection signal="update_min_ap" from="Healer" to="GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points" method="_on_healer_update_min_ap"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Again" to="." method="_on_again_pressed"]
+[connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/ToTavern" to="." method="_on_to_tavern_pressed"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseCanvas/PauseContainer/VBoxContainer/Quit" to="." method="_on_return_pressed"]

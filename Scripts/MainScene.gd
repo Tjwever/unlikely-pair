@@ -75,3 +75,7 @@ func _on_continue_pressed():
 
 func _on_again_pressed():
 	get_tree().reload_current_scene()
+
+
+func _on_to_tavern_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Tavern.tscn")

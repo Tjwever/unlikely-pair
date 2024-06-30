@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_8tjfh")
 
-[node name="Button" type="Button" parent="TextureRect"]
+[node name="Continue" type="Button" parent="TextureRect"]
 layout_mode = 0
 offset_left = 1597.0
 offset_top = 917.0
@@ -31,4 +31,4 @@ theme_override_colors/font_color = Color(0.921569, 0.901961, 0.431373, 1)
 theme_override_font_sizes/font_size = 48
 text = "Continue"
 
-[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TextureRect/Continue" to="." method="_on_button_pressed"]

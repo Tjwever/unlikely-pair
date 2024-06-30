@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlqvg5ss8cip3"]
 
-[ext_resource type="Script" path="res://Scenes/Tavern.gd" id="1_7pt2v"]
+[ext_resource type="Script" path="res://Scripts/Tavern.gd" id="1_7pt2v"]
 [ext_resource type="Texture2D" uid="uid://c1u2dclprox6h" path="res://Assets/TileMaps/tavern-tilemap.png" id="1_so4xa"]
 [ext_resource type="PackedScene" uid="uid://cm7341hr8njy6" path="res://Characters/Player/Player.tscn" id="2_kai6h"]
 [ext_resource type="Texture2D" uid="uid://e7l1b6yesf65" path="res://Assets/door.png" id="3_4tdww"]
