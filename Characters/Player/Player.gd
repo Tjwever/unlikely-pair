@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var fight_prompt_ui = $Camera2D/FightPromptUI
 @onready var animation_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
 
 var can_move := true
 var character_next_to_door := false
@@ -25,9 +26,21 @@ func _process(_delta):
 		direction = direction.normalized()  # Normalize to ensure consistent speed
 		velocity = direction * speed
 		move_and_slide()
+		
+		if direction != Vector2.ZERO:
+			if !animation_player.is_playing() or animation_player.current_animation != "move":
+				animation_player.play("move")
+
+			if direction.x != 0:
+				sprite.flip_h = direction.x > 0
+
+		else:
+			if !animation_player.is_playing() or animation_player.current_animation != "idle":
+				animation_player.play("idle")
 
 	if Input.is_action_pressed("interact"):
 		if character_next_to_door:
+			animation_player.stop()
 			can_move = false
 			fight_prompt_ui.visible = true
 

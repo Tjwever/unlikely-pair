@@ -10,3 +10,4 @@ func _on_yes_pressed():
 func _on_no_pressed():
 	fight_prompt_ui.visible = false
 	player.can_move = true
+	

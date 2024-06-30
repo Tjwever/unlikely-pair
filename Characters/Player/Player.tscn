@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm7341hr8njy6"]
+[gd_scene load_steps=8 format=3 uid="uid://cm7341hr8njy6"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_3m6jg"]
 [ext_resource type="Texture2D" uid="uid://c8cae7xvukx6a" path="res://Characters/Player/healer_sprite.png" id="2_omecw"]
@@ -63,9 +63,26 @@ tracks/0/keys = {
 "values": [Vector2(0.627907, 1.37209)]
 }
 
+[sub_resource type="Animation" id="Animation_aca8v"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.17), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ejgo"]
 _data = {
 "RESET": SubResource("Animation_afpx0"),
+"idle": SubResource("Animation_aca8v"),
 "move": SubResource("Animation_hji6u")
 }
 
@@ -75,7 +92,7 @@ scale = Vector2(0.215, 0.215)
 script = ExtResource("1_3m6jg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(311.628, 458.411)
+position = Vector2(311.628, 479.07)
 scale = Vector2(0.627907, 1.37209)
 texture = ExtResource("2_omecw")
 centered = false
