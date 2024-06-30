@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlqvg5ss8cip3"]
+[gd_scene load_steps=11 format=3 uid="uid://dlqvg5ss8cip3"]
 
 [ext_resource type="Script" path="res://Scripts/Tavern.gd" id="1_7pt2v"]
 [ext_resource type="Texture2D" uid="uid://c1u2dclprox6h" path="res://Assets/TileMaps/tavern-tilemap.png" id="1_so4xa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://e7l1b6yesf65" path="res://Assets/door.png" id="3_4tdww"]
 [ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="3_gkput"]
 [ext_resource type="PackedScene" uid="uid://d2ptitnovpmq2" path="res://Scenes/PauseCanvas.tscn" id="6_jbcg3"]
+[ext_resource type="AudioStream" uid="uid://bs6sudry6rl3u" path="res://Assets/Audio/Music/tavern.wav" id="7_5kh5g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xu3d"]
 texture = ExtResource("1_so4xa")
@@ -222,6 +223,12 @@ size_flags_vertical = 6
 theme = ExtResource("3_gkput")
 theme_override_font_sizes/font_size = 40
 text = "No way!"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-4627.91, -2381.4)
+scale = Vector2(4.65116, 4.65116)
+stream = ExtResource("7_5kh5g")
+autoplay = true
 
 [node name="Door" type="Node2D" parent="."]
 

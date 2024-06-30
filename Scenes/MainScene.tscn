@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cotqhie772b6n" path="res://Characters/Player/Healer.tscn" id="3_a68mk"]
 [ext_resource type="PackedScene" uid="uid://de5qwi65rhdek" path="res://Scenes/healthbar.tscn" id="3_bcho7"]
 [ext_resource type="Script" path="res://Scripts/min_ability_points.gd" id="5_prxta"]
-[ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://battle-music.wav" id="8_0ls7x"]
+[ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://Assets/Audio/Music/battle-music.wav" id="8_0ls7x"]
 [ext_resource type="PackedScene" uid="uid://d2ptitnovpmq2" path="res://Scenes/PauseCanvas.tscn" id="9_5t4ej"]
 
 [node name="MainScene" type="Node2D"]
