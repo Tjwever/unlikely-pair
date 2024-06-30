@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cek1n0hsuq440"
-path="res://.godot/imported/light-heal-indicator.png-6e520487785f9618fc4090d3dc5d81eb.ctex"
+uid="uid://3dhd01w3oghm"
+path="res://.godot/imported/selection-arrow.png-7c5274618ce2865f28ef18659121cfc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/light-heal-indicator.png"
-dest_files=["res://.godot/imported/light-heal-indicator.png-6e520487785f9618fc4090d3dc5d81eb.ctex"]
+source_file="res://Assets/Misc/selection-arrow.png"
+dest_files=["res://.godot/imported/selection-arrow.png-7c5274618ce2865f28ef18659121cfc4.ctex"]
 
 [params]
 

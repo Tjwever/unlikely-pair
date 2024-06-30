@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx2fra281db2n"
-path="res://.godot/imported/unlikely-pair-theme-enemy.png-9ff18c8c201f844c532abaab57e2ffe3.ctex"
+uid="uid://4hn4ft1lvuja"
+path="res://.godot/imported/unlikely-pair-progressbar.png-f4801db99a1427bf7acc8f4e6921d796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://unlikely-pair-theme-enemy.png"
-dest_files=["res://.godot/imported/unlikely-pair-theme-enemy.png-9ff18c8c201f844c532abaab57e2ffe3.ctex"]
+source_file="res://Assets/Misc/unlikely-pair-progressbar.png"
+dest_files=["res://.godot/imported/unlikely-pair-progressbar.png-f4801db99a1427bf7acc8f4e6921d796.ctex"]
 
 [params]
 

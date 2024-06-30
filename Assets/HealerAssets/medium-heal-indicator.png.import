@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0phxl87tmviv"
-path="res://.godot/imported/bg.jpg-be0bbb7afea23fe3e63b8f540e0adfdd.ctex"
+uid="uid://0s38up4ryy71"
+path="res://.godot/imported/medium-heal-indicator.png-1251e472127634f15b5c086f99c8f01e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bg.jpg"
-dest_files=["res://.godot/imported/bg.jpg-be0bbb7afea23fe3e63b8f540e0adfdd.ctex"]
+source_file="res://Assets/HealerAssets/medium-heal-indicator.png"
+dest_files=["res://.godot/imported/medium-heal-indicator.png-1251e472127634f15b5c086f99c8f01e.ctex"]
 
 [params]
 

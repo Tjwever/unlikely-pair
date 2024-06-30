@@ -1,11 +1,11 @@
 [gd_resource type="Theme" load_steps=14 format=3 uid="uid://cx02ixemps6jx"]
 
-[ext_resource type="Texture2D" uid="uid://dx2fra281db2n" path="res://unlikely-pair-theme-enemy.png" id="1_7dmmq"]
-[ext_resource type="Texture2D" uid="uid://dh0f6ol5fkxuq" path="res://unlikely-pair-theme.png" id="1_61lvs"]
-[ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://EaseOfUseOutline.ttf" id="1_iteq5"]
-[ext_resource type="Texture2D" uid="uid://cdubkgrukmma3" path="res://unlikely-pair-theme-healer.png" id="1_jtmym"]
-[ext_resource type="Texture2D" uid="uid://4hn4ft1lvuja" path="res://unlikely-pair-progressbar.png" id="2_h7kot"]
-[ext_resource type="Texture2D" uid="uid://bout3js3qq2c8" path="res://unlikely-pair-theme-fighter.png" id="2_vn86p"]
+[ext_resource type="Texture2D" uid="uid://dx2fra281db2n" path="res://Assets/ThemeBG/unlikely-pair-theme-enemy.png" id="1_7dmmq"]
+[ext_resource type="Texture2D" uid="uid://dh0f6ol5fkxuq" path="res://Assets/ThemeBG/unlikely-pair-theme.png" id="1_61lvs"]
+[ext_resource type="FontFile" uid="uid://dghgksnqassog" path="res://Assets/Themes/EaseOfUseOutline.ttf" id="1_iteq5"]
+[ext_resource type="Texture2D" uid="uid://cdubkgrukmma3" path="res://Assets/ThemeBG/unlikely-pair-theme-healer.png" id="1_jtmym"]
+[ext_resource type="Texture2D" uid="uid://4hn4ft1lvuja" path="res://Assets/Misc/unlikely-pair-progressbar.png" id="2_h7kot"]
+[ext_resource type="Texture2D" uid="uid://bout3js3qq2c8" path="res://Assets/ThemeBG/unlikely-pair-theme-fighter.png" id="2_vn86p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ce5q"]
 texture = ExtResource("1_7dmmq")
@@ -57,8 +57,8 @@ FighterTheme/styles/panel = SubResource("StyleBoxTexture_o8nam")
 HealerTheme/base_type = &"PanelContainer"
 HealerTheme/styles/panel = SubResource("StyleBoxTexture_fe0pa")
 Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(0, 0.00784314, 0.105882, 1)
-Label/colors/font_shadow_color = Color(1, 1, 1, 0.0666667)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0.0862745, 0.054902, 0.243137, 0.419608)
 Label/fonts/font = ExtResource("1_iteq5")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_quioa")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_0wtqn")

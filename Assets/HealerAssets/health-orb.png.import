@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0s38up4ryy71"
-path="res://.godot/imported/medium-heal-indicator.png-3a099b747a135d9bf40b16f42d0a1098.ctex"
+uid="uid://chxiqk720h3ir"
+path="res://.godot/imported/health-orb.png-7eacb9ded86ebcf4b61ccff086cc7240.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/medium-heal-indicator.png"
-dest_files=["res://.godot/imported/medium-heal-indicator.png-3a099b747a135d9bf40b16f42d0a1098.ctex"]
+source_file="res://Assets/HealerAssets/health-orb.png"
+dest_files=["res://.godot/imported/health-orb.png-7eacb9ded86ebcf4b61ccff086cc7240.ctex"]
 
 [params]
 

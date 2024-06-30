@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://oyovxuu3dahk"]
+[gd_scene load_steps=12 format=3 uid="uid://oyovxuu3dahk"]
 
-[ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://bg.jpg" id="1_81pdv"]
-[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://pair_theme.tres" id="1_hfth5"]
+[ext_resource type="Texture2D" uid="uid://b0phxl87tmviv" path="res://Assets/Misc/bg.jpg" id="1_81pdv"]
+[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://Assets/Themes/pair_theme.tres" id="1_hfth5"]
 [ext_resource type="Script" path="res://Scripts/MainScene.gd" id="1_qjgyc"]
 [ext_resource type="PackedScene" uid="uid://c75kvjd0027di" path="res://Characters/Enemies/Skelly.tscn" id="1_xwvg5"]
 [ext_resource type="PackedScene" uid="uid://6rbfdpy1myck" path="res://Characters/Allies/Fighter.tscn" id="2_jug8b"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/min_ability_points.gd" id="5_prxta"]
 [ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://Assets/Audio/Music/battle-music.wav" id="8_0ls7x"]
 [ext_resource type="PackedScene" uid="uid://d2ptitnovpmq2" path="res://Scenes/PauseCanvas.tscn" id="9_5t4ej"]
+[ext_resource type="Script" path="res://Scenes/CameraShake.gd" id="11_20uwl"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_qjgyc")
@@ -420,37 +421,6 @@ layout_mode = 2
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_right = 40
 
-[node name="temp" type="CanvasLayer" parent="."]
-process_mode = 2
-visible = false
-
-[node name="PauseContainer" type="PanelContainer" parent="temp"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="temp/PauseContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Continue" type="Button" parent="temp/PauseContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Continue"
-
-[node name="Quit" type="Button" parent="temp/PauseContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Quit"
-
-[node name="Spacer" type="MarginContainer" parent="temp/PauseContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 40
-
 [node name="PauseCanvas" parent="." instance=ExtResource("9_5t4ej")]
 visible = false
 
@@ -480,6 +450,10 @@ text = "FIGHT!"
 stream = ExtResource("8_0ls7x")
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(962, 542)
+script = ExtResource("11_20uwl")
+
 [connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]
 [connection signal="update_enemy_health" from="Enemy" to="GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar" method="_on_enemy_update_enemy_health"]
 [connection signal="fighter_defeated" from="Fighter" to="." method="_on_fighter_fighter_defeated"]
@@ -490,5 +464,3 @@ autoplay = true
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Again" to="." method="_on_again_pressed"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/ToTavern" to="." method="_on_to_tavern_pressed"]
 [connection signal="pressed" from="EndGameCanvas/EndGameContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
-[connection signal="pressed" from="temp/PauseContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="temp/PauseContainer/VBoxContainer/Quit" to="." method="_on_return_pressed"]

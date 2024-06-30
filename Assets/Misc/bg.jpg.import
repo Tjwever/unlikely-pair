@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmoi6so30p8oe"
-path="res://.godot/imported/heavy-heal-indicator.png-272580311a8c313b1254321c41d4e6cb.ctex"
+uid="uid://b0phxl87tmviv"
+path="res://.godot/imported/bg.jpg-cdb1fdd0030e1ae38a2983f9366e769d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/heavy-heal-indicator.png"
-dest_files=["res://.godot/imported/heavy-heal-indicator.png-272580311a8c313b1254321c41d4e6cb.ctex"]
+source_file="res://Assets/Misc/bg.jpg"
+dest_files=["res://.godot/imported/bg.jpg-cdb1fdd0030e1ae38a2983f9366e769d.ctex"]
 
 [params]
 

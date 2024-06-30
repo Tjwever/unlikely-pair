@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://du8u7yx8s5ni3"]
 
 [ext_resource type="Script" path="res://Scripts/HealthOrb.gd" id="1_apayn"]
-[ext_resource type="Texture2D" uid="uid://chxiqk720h3ir" path="res://health-orb.png" id="2_oofu0"]
+[ext_resource type="Texture2D" uid="uid://chxiqk720h3ir" path="res://Assets/HealerAssets/health-orb.png" id="2_oofu0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmhcm"]
 radius = 16.0312

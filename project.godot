@@ -13,7 +13,10 @@ config_version=5
 config/name="Unlikely-Pair"
 run/main_scene="res://Scenes/start_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/default_bus_layout.tres"
 
 [autoload]
 

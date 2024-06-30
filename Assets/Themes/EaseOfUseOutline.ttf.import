@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dghgksnqassog"
-path="res://.godot/imported/EaseOfUseOutline.ttf-692ef22e1c210c6dc2989bd2afb8f912.fontdata"
+path="res://.godot/imported/EaseOfUseOutline.ttf-38cba73c0fb4629aa025bb86f858444f.fontdata"
 
 [deps]
 
-source_file="res://EaseOfUseOutline.ttf"
-dest_files=["res://.godot/imported/EaseOfUseOutline.ttf-692ef22e1c210c6dc2989bd2afb8f912.fontdata"]
+source_file="res://Assets/Themes/EaseOfUseOutline.ttf"
+dest_files=["res://.godot/imported/EaseOfUseOutline.ttf-38cba73c0fb4629aa025bb86f858444f.fontdata"]
 
 [params]
 

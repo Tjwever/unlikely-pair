@@ -12,6 +12,7 @@ var healthbar = $"../GameUI/EnemySideUI/GridContainer/MarginContainer/VBoxContai
 var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
 @onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 
+@onready var camera = $"../Camera2D"
 @onready var fighter = $"../Fighter"
 @onready var healer = $"../Healer"
 @onready var regular_attack_timer = $RegularAttackTimer
@@ -24,10 +25,10 @@ const BASE_WAIT_TIME = 2.0
 
 var allies := [fighter, healer]
 # for testing purposes, health at 1000
-var max_health := 1000
-var current_health := 1000
-#var max_health := 10000
-#var current_health := 10000
+#var max_health := 1000
+#var current_health := 1000
+var max_health := 10000
+var current_health := 10000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
@@ -108,10 +109,13 @@ func attack():
 			else:
 				fighter.take_damage(damage_dealt + 25)  # 25 is arbitrary number for now
 				healer.take_damage(damage_dealt + 25)
+				camera.shake(20)
 			is_big_attack = false
 		else:
 			animation_player.play("quick_attack")
 			await get_tree().create_timer(0.1).timeout
+			camera.shake(6)
+			
 			target.take_damage(damage_dealt)
 
 

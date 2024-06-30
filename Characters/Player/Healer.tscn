@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://cotqhie772b6n"]
 
-[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://selection-arrow.png" id="1_dmiam"]
+[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_dmiam"]
 [ext_resource type="Script" path="res://Characters/Player/Healer.gd" id="1_kmod5"]
 [ext_resource type="Texture2D" uid="uid://c8cae7xvukx6a" path="res://Characters/Player/healer_sprite.png" id="1_xig04"]
 [ext_resource type="PackedScene" uid="uid://du8u7yx8s5ni3" path="res://Scenes/HealthOrb.tscn" id="4_jy7ve"]
-[ext_resource type="Texture2D" uid="uid://cek1n0hsuq440" path="res://Assets/light-heal-indicator.png" id="5_rmo08"]
-[ext_resource type="Texture2D" uid="uid://0s38up4ryy71" path="res://Assets/medium-heal-indicator.png" id="6_4qj0y"]
-[ext_resource type="Texture2D" uid="uid://cmoi6so30p8oe" path="res://Assets/heavy-heal-indicator.png" id="7_t3ncw"]
+[ext_resource type="Texture2D" uid="uid://cek1n0hsuq440" path="res://Assets/HealerAssets/light-heal-indicator.png" id="5_rmo08"]
+[ext_resource type="Texture2D" uid="uid://0s38up4ryy71" path="res://Assets/HealerAssets/medium-heal-indicator.png" id="6_4qj0y"]
+[ext_resource type="Texture2D" uid="uid://cmoi6so30p8oe" path="res://Assets/HealerAssets/heavy-heal-indicator.png" id="7_t3ncw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)

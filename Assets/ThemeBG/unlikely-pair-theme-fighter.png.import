@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh0f6ol5fkxuq"
-path="res://.godot/imported/unlikely-pair-theme.png-97650a4cc19e9ac496041687af812096.ctex"
+uid="uid://bout3js3qq2c8"
+path="res://.godot/imported/unlikely-pair-theme-fighter.png-e37d8707d79f4777894d1a12dcfb0637.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://unlikely-pair-theme.png"
-dest_files=["res://.godot/imported/unlikely-pair-theme.png-97650a4cc19e9ac496041687af812096.ctex"]
+source_file="res://Assets/ThemeBG/unlikely-pair-theme-fighter.png"
+dest_files=["res://.godot/imported/unlikely-pair-theme-fighter.png-e37d8707d79f4777894d1a12dcfb0637.ctex"]
 
 [params]
 

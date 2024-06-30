@@ -70,10 +70,9 @@ var indicator_position4 := Vector2(40, 950)
 const LIGHT := "light"
 const MEDIUM := "medium"
 const HEAVY := "heavy"
-const LIGHT_HEAL_INDICATOR = preload("res://Assets/light-heal-indicator.png")
-const MEDIUM_HEAL_INDICATOR = preload("res://Assets/medium-heal-indicator.png")
-const HEAVY_HEAL_INDICATOR = preload("res://Assets/heavy-heal-indicator.png")
-
+const LIGHT_HEAL_INDICATOR = preload("res://Assets/HealerAssets/light-heal-indicator.png")
+const MEDIUM_HEAL_INDICATOR = preload("res://Assets/HealerAssets/medium-heal-indicator.png")
+const HEAVY_HEAL_INDICATOR = preload("res://Assets/HealerAssets/heavy-heal-indicator.png")
 
 func _ready():
 	var healer_data = CharacterState.load_character_data("healer")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://6rbfdpy1myck"]
 
 [ext_resource type="PackedScene" uid="uid://jymf36cmyn2b" path="res://Scenes/attack.tscn" id="1_1q7dw"]
-[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://selection-arrow.png" id="1_blj0s"]
+[ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_blj0s"]
 [ext_resource type="Script" path="res://Characters/Allies/Fighter.gd" id="1_ct7jp"]
 [ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
 
