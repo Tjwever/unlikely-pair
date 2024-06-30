@@ -36,8 +36,6 @@ var isDead: bool = false
 func _ready():
 	var fighter_data = CharacterState.load_character_data("fighter")
 
-	print("Figter is level ", fighter_data["level"])
-
 	if fighter_data:
 		max_health = fighter_data["max_health"]
 		current_health = fighter_data["current_health"]
@@ -48,7 +46,6 @@ func _ready():
 		double_attack_rate = fighter_data["double_attack_rate"]
 		level = fighter_data["level"]
 
-	print("fighter's health: ", max_health)
 	healthbar.init_health(current_health)
 
 	await get_tree().create_timer(0.5).timeout
@@ -118,7 +115,6 @@ func take_damage(damage):
 		await get_tree().create_timer(0.32).timeout
 		isDead = true
 		emit_signal("fighter_defeated")
-		print("death")
 
 
 func heal(amount):
@@ -131,10 +127,6 @@ func heal(amount):
 
 	if current_health > max_health:
 		current_health = max_health
-
-
-func is_alive():
-	return current_health <= 0
 
 
 func _on_timer_timeout():

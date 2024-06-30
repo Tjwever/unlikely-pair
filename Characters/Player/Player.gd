@@ -23,7 +23,7 @@ func _process(_delta):
 		if Input.is_action_pressed("move_right"):
 			direction.x += 1
 
-		direction = direction.normalized()  # Normalize to ensure consistent speed
+		direction = direction.normalized()
 		velocity = direction * speed
 		move_and_slide()
 

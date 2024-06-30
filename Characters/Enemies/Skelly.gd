@@ -42,8 +42,6 @@ var is_big_attack: bool = false
 func _ready():
 	kill_count = CharacterState.get_kill_count("skelly")
 
-	print("you killed him how many times??: ", kill_count)
-
 	healthbar.init_health(current_health)
 
 	await get_tree().create_timer(0.5).timeout
@@ -146,11 +144,6 @@ func heal(amount):
 	current_health += amount
 	if current_health > max_health:
 		current_health = max_health
-
-
-# Function to check if enemy is alive
-func is_alive():
-	return current_health > 0
 
 
 func _on_timer_timeout():

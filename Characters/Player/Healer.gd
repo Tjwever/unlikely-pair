@@ -39,11 +39,6 @@ var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/
 @onready var animation_player = $AnimationPlayer
 @export var health_orb_scene: PackedScene
 
-#var max_health := 200
-#var current_health := 200
-#var defense := 3
-#var min_ap := 4
-#var max_ap := 4
 var max_health
 var current_health
 var defense
@@ -76,7 +71,6 @@ const HEAVY_HEAL_INDICATOR = preload("res://Assets/HealerAssets/heavy-heal-indic
 
 func _ready():
 	var healer_data = CharacterState.load_character_data("healer")
-	print("Healer is level ", healer_data["level"])
 
 	if healer_data:
 		max_health = healer_data["max_health"]
@@ -149,7 +143,6 @@ func input_action(ability_point_deduction):
 func release_combo():
 	var local_array = combo_array.duplicate()
 	var _i = 0
-	print("combo array: ", combo_array)
 	var tween = get_tree().create_tween()
 
 	tween.tween_property(heal_input_1, "position", origin_point, 0.1)
@@ -256,7 +249,6 @@ func take_damage(damage):
 		animation_player.play("death")
 		is_dead = true
 		emit_signal("healer_defeated")
-		print("healer death")
 
 
 func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount: int):
@@ -284,7 +276,6 @@ func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount
 
 func launch_health_orb(amount):
 	var orb = health_orb_scene.instantiate()
-	#print("launch orb")
 	if selected_ally_index == 0:
 		if fighter.isDead:
 			healing_animation(orb, fighter, 0)
