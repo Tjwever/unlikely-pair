@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/min_ability_points.gd" id="5_prxta"]
 [ext_resource type="AudioStream" uid="uid://dm2w2117n28la" path="res://Assets/Audio/Music/battle-music.wav" id="8_0ls7x"]
 [ext_resource type="PackedScene" uid="uid://d2ptitnovpmq2" path="res://Scenes/PauseCanvas.tscn" id="9_5t4ej"]
-[ext_resource type="Script" path="res://Scenes/CameraShake.gd" id="11_20uwl"]
+[ext_resource type="Script" path="res://Scripts/CameraShake.gd" id="11_20uwl"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_qjgyc")

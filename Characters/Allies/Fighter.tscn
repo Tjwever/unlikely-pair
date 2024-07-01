@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://6rbfdpy1myck"]
+[gd_scene load_steps=13 format=3 uid="uid://6rbfdpy1myck"]
 
 [ext_resource type="PackedScene" uid="uid://jymf36cmyn2b" path="res://Scenes/attack.tscn" id="1_1q7dw"]
 [ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_blj0s"]
 [ext_resource type="Script" path="res://Characters/Allies/Fighter.gd" id="1_ct7jp"]
 [ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
+[ext_resource type="PackedScene" uid="uid://b85s15nkao8ck" path="res://Scenes/LevelIndicatorUI.tscn" id="5_b3rmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
@@ -138,7 +139,7 @@ script = ExtResource("1_ct7jp")
 
 [node name="Focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(955, 225)
+position = Vector2(955, 340)
 scale = Vector2(5.23684, 5.23684)
 texture = ExtResource("1_blj0s")
 
@@ -164,6 +165,13 @@ position = Vector2(240, -60)
 [node name="NotificationTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="LevelIndicatorUi" parent="." instance=ExtResource("5_b3rmr")]
+offset_left = 890.0
+offset_top = -95.0
+offset_right = 890.0
+offset_bottom = -95.0
+character = "fighter"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="NotificationTimer" to="." method="_on_notification_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cotqhie772b6n"]
+[gd_scene load_steps=18 format=3 uid="uid://cotqhie772b6n"]
 
 [ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_dmiam"]
 [ext_resource type="Script" path="res://Characters/Player/Healer.gd" id="1_kmod5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cek1n0hsuq440" path="res://Assets/HealerAssets/light-heal-indicator.png" id="5_rmo08"]
 [ext_resource type="Texture2D" uid="uid://0s38up4ryy71" path="res://Assets/HealerAssets/medium-heal-indicator.png" id="6_4qj0y"]
 [ext_resource type="Texture2D" uid="uid://cmoi6so30p8oe" path="res://Assets/HealerAssets/heavy-heal-indicator.png" id="7_t3ncw"]
+[ext_resource type="PackedScene" uid="uid://b85s15nkao8ck" path="res://Scenes/LevelIndicatorUI.tscn" id="8_t2ggk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
@@ -155,7 +156,7 @@ health_orb_scene = ExtResource("4_jy7ve")
 
 [node name="Focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(955, 235)
+position = Vector2(955, 340)
 scale = Vector2(5.23684, 5.23684)
 texture = ExtResource("1_dmiam")
 
@@ -251,6 +252,13 @@ offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_t3ncw")
+
+[node name="LevelIndicatorUi" parent="." instance=ExtResource("8_t2ggk")]
+offset_left = 890.0
+offset_top = -90.0
+offset_right = 890.0
+offset_bottom = -90.0
+character = "healer"
 
 [connection signal="timeout" from="recharge_ap_timer" to="." method="_on_recharge_ap_timer_timeout"]
 [connection signal="timeout" from="combo_window_timer" to="." method="_on_combo_window_timer_timeout"]
