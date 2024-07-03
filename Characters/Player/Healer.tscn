@@ -263,6 +263,7 @@ offset_right = -150.0
 offset_bottom = -75.0
 
 [node name="HealInput5" type="TextureRect" parent="HealInputContainer2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,6 +277,7 @@ grow_vertical = 2
 texture = ExtResource("5_rmo08")
 
 [node name="HealInput6" type="TextureRect" parent="HealInputContainer2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -289,6 +291,7 @@ grow_vertical = 2
 texture = ExtResource("5_rmo08")
 
 [node name="HealInput7" type="TextureRect" parent="HealInputContainer2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -302,6 +305,7 @@ grow_vertical = 2
 texture = ExtResource("6_4qj0y")
 
 [node name="HealInput8" type="TextureRect" parent="HealInputContainer2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

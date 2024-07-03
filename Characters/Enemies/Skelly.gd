@@ -32,7 +32,7 @@ var current_health := 10000
 var defense := 3
 var attack_damge := 45
 var speed := 8.0
-var exp_given := 300
+var exp_given := 250
 var kill_count
 var is_dead := false
 var big_attack_cooldown: int = 10
