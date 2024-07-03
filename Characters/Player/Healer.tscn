@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cotqhie772b6n"]
+[gd_scene load_steps=19 format=3 uid="uid://cotqhie772b6n"]
 
 [ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_dmiam"]
 [ext_resource type="Script" path="res://Characters/Player/Healer.gd" id="1_kmod5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://0s38up4ryy71" path="res://Assets/HealerAssets/medium-heal-indicator.png" id="6_4qj0y"]
 [ext_resource type="Texture2D" uid="uid://cmoi6so30p8oe" path="res://Assets/HealerAssets/heavy-heal-indicator.png" id="7_t3ncw"]
 [ext_resource type="PackedScene" uid="uid://b85s15nkao8ck" path="res://Scenes/LevelIndicatorUI.tscn" id="8_t2ggk"]
+[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://Assets/Themes/pair_theme.tres" id="9_kh4f5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
@@ -253,12 +254,114 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_t3ncw")
 
+[node name="HealInputContainer2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -360.0
+offset_top = -285.0
+offset_right = -150.0
+offset_bottom = -75.0
+
+[node name="HealInput5" type="TextureRect" parent="HealInputContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1580.0
+offset_top = 290.0
+offset_right = 1580.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rmo08")
+
+[node name="HealInput6" type="TextureRect" parent="HealInputContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1580.0
+offset_top = 290.0
+offset_right = 1580.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rmo08")
+
+[node name="HealInput7" type="TextureRect" parent="HealInputContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1580.0
+offset_top = 290.0
+offset_right = 1580.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_4qj0y")
+
+[node name="HealInput8" type="TextureRect" parent="HealInputContainer2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1580.0
+offset_top = 290.0
+offset_right = 1580.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_t3ncw")
+
 [node name="LevelIndicatorUi" parent="." instance=ExtResource("8_t2ggk")]
 offset_left = 890.0
 offset_top = -90.0
 offset_right = 890.0
 offset_bottom = -90.0
 character = "healer"
+
+[node name="SpecialMoveNotifierUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2185.0
+offset_top = -145.0
+offset_right = 2185.0
+offset_bottom = -145.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpecialMoveNotifierUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -855.0
+offset_top = -755.0
+offset_right = -490.0
+offset_bottom = -555.0
+grow_horizontal = 2
+scale = Vector2(5.24311, 6.87836)
+
+[node name="Spacer" type="MarginContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("9_kh4f5")
+
+[node name="SpecialMoveNotifierLabel" type="Label" parent="SpecialMoveNotifierUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Special Move Big DMG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(670, 635)
 
 [connection signal="timeout" from="recharge_ap_timer" to="." method="_on_recharge_ap_timer_timeout"]
 [connection signal="timeout" from="combo_window_timer" to="." method="_on_combo_window_timer_timeout"]

@@ -7,10 +7,10 @@ signal fighter_defeated
 
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
-@onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
+@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
 @onready
-var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
-@onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+var special_move_notifier_label = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 
 @onready var enemy = $"../Enemy"
 @onready var timer = $Timer

@@ -9,14 +9,18 @@ signal healer_defeated
 # UI
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
-@onready var special_move_notifier_ui = $"../SpecialMoveNotifierUI"
+@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
 @onready
-var special_move_notifier_label = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
-@onready var panel_container = $"../SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
+var special_move_notifier_label = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
+@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 @onready var heal_input_1 = $HealInputContainer/HealInput1
 @onready var heal_input_2 = $HealInputContainer/HealInput2
 @onready var heal_input_3 = $HealInputContainer/HealInput3
 @onready var heal_input_4 = $HealInputContainer/HealInput4
+@onready var heal_input_5 = $HealInputContainer2/HealInput5
+@onready var heal_input_6 = $HealInputContainer2/HealInput6
+@onready var heal_input_7 = $HealInputContainer2/HealInput7
+@onready var heal_input_8 = $HealInputContainer2/HealInput8
 
 @onready
 var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
@@ -56,11 +60,15 @@ var heavy_heal_amount
 
 var is_dead: bool = false
 
-var origin_point := Vector2(-120, 290)
-var indicator_position1 := Vector2(40, -35)
-var indicator_position2 := Vector2(-205, 295)
-var indicator_position3 := Vector2(-205, 630)
-var indicator_position4 := Vector2(40, 950)
+const origin_point := Vector2(-120, 290)
+const indicator_position1 := Vector2(40, -35)
+const indicator_position2 := Vector2(-205, 295)
+const indicator_position3 := Vector2(-205, 630)
+const indicator_position4 := Vector2(40, 950)
+const indicator_position5 := Vector2(1580, -35)
+const indicator_position6 := Vector2(1745, 295)
+const indicator_position7 := Vector2(1745, 630)
+const indicator_position8 := Vector2(1580, 950)
 
 const LIGHT := "light"
 const MEDIUM := "medium"
@@ -123,7 +131,7 @@ func _process(_delta):
 
 
 func input_action(ability_point_deduction):
-	if !attack_delay and !is_dead and min_ap >= ability_point_deduction and combo_array.size() < 4:
+	if !attack_delay and !is_dead and min_ap >= ability_point_deduction and combo_array.size() < max_ap:
 		if ability_point_deduction == 1:
 			combo_array.append(LIGHT)
 			heal_input_icon_show()
@@ -153,6 +161,14 @@ func release_combo():
 	tween.tween_property(heal_input_3, "scale", Vector2(0, 0), 0.1)
 	tween.tween_property(heal_input_4, "position", origin_point, 0.1)
 	tween.tween_property(heal_input_4, "scale", Vector2(0, 0), 0.1)
+	tween.tween_property(heal_input_5, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_5, "scale", Vector2(0, 0), 0.1)
+	tween.tween_property(heal_input_6, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_6, "scale", Vector2(0, 0), 0.1)
+	tween.tween_property(heal_input_7, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_7, "scale", Vector2(0, 0), 0.1)
+	tween.tween_property(heal_input_8, "position", origin_point, 0.1)
+	tween.tween_property(heal_input_8, "scale", Vector2(0, 0), 0.1)
 
 	for _heal in local_array:
 		if _heal == LIGHT:
@@ -176,6 +192,10 @@ func heal_input_icon_show():
 		heal_icon_check(index, local_array, 1, heal_input_2, indicator_position2)
 		heal_icon_check(index, local_array, 2, heal_input_3, indicator_position3)
 		heal_icon_check(index, local_array, 3, heal_input_4, indicator_position4)
+		heal_icon_check(index, local_array, 4, heal_input_5, indicator_position5)
+		heal_icon_check(index, local_array, 5, heal_input_6, indicator_position6)
+		heal_icon_check(index, local_array, 6, heal_input_7, indicator_position7)
+		heal_icon_check(index, local_array, 7, heal_input_8, indicator_position8)
 
 		index += 1
 
@@ -201,9 +221,11 @@ func heal_icon_check(i: int, array: Array, index_check: int, input_type, pos):
 
 
 func cast_special_ability(_combo_array: Array):
-	if _combo_array == [LIGHT, LIGHT, LIGHT, LIGHT]:
+	var combo_string = "".join(_combo_array)
+
+	if combo_string.contains('lightlightlightlight'):
 		regen()
-	elif _combo_array == [MEDIUM, MEDIUM]:
+	elif combo_string.contains('mediummedium'):
 		aoe_heal()
 
 

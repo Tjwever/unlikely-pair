@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://6rbfdpy1myck"]
+[gd_scene load_steps=14 format=3 uid="uid://6rbfdpy1myck"]
 
 [ext_resource type="PackedScene" uid="uid://jymf36cmyn2b" path="res://Scenes/attack.tscn" id="1_1q7dw"]
 [ext_resource type="Texture2D" uid="uid://3dhd01w3oghm" path="res://Assets/Misc/selection-arrow.png" id="1_blj0s"]
 [ext_resource type="Script" path="res://Characters/Allies/Fighter.gd" id="1_ct7jp"]
 [ext_resource type="Texture2D" uid="uid://d33eyhc2ajejk" path="res://Characters/Allies/fighter_sprite.png" id="1_hyssi"]
 [ext_resource type="PackedScene" uid="uid://b85s15nkao8ck" path="res://Scenes/LevelIndicatorUI.tscn" id="5_b3rmr"]
+[ext_resource type="Theme" uid="uid://cx02ixemps6jx" path="res://Assets/Themes/pair_theme.tres" id="6_1hy5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4ks"]
 size = Vector2(658, 647)
@@ -172,6 +173,45 @@ offset_top = -95.0
 offset_right = 890.0
 offset_bottom = -95.0
 character = "fighter"
+
+[node name="SpecialMoveNotifierUI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2185.0
+offset_top = -145.0
+offset_right = 2185.0
+offset_bottom = -145.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpecialMoveNotifierUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -855.0
+offset_top = -755.0
+offset_right = -490.0
+offset_bottom = -555.0
+grow_horizontal = 2
+scale = Vector2(5.243, 6.878)
+
+[node name="Spacer" type="MarginContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="SpecialMoveNotifierUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_1hy5l")
+
+[node name="SpecialMoveNotifierLabel" type="Label" parent="SpecialMoveNotifierUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Special Move Big DMG"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="NotificationTimer" to="." method="_on_notification_timer_timeout"]
