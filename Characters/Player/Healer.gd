@@ -229,7 +229,7 @@ func cast_special_ability(_combo_array: Array):
 func regen():
 	if selected_ally_index == 0:
 		show_special_ability_notification("Regen!")
-		if fighter.isDead:
+		if fighter.is_dead:
 			fighter.heal(0)
 		else:
 			for n in 8:
@@ -247,7 +247,7 @@ func regen():
 func aoe_heal():
 	show_special_ability_notification("Heal all!")
 
-	if fighter.isDead:
+	if fighter.is_dead:
 		fighter.heal(0)
 	elif self.is_dead:
 		self.heal(0)
@@ -282,7 +282,7 @@ func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount
 func launch_health_orb(amount):
 	var orb = health_orb_scene.instantiate()
 	if selected_ally_index == 0:
-		if fighter.isDead:
+		if fighter.is_dead:
 			healing_animation(orb, fighter, 0)
 		healing_animation(orb, fighter, amount)
 	else:

@@ -50,7 +50,7 @@ func _ready():
 	await get_tree().create_timer(1).timeout
 	tween.kill()
 
-	if fighter.isDead and healer.is_dead:
+	if fighter.is_dead and healer.is_dead:
 		big_attack_timer.stop()
 		regular_attack_timer.stop()
 
@@ -62,7 +62,7 @@ func _ready():
 
 
 func _process(_delta):
-	if fighter.isDead and healer.is_dead:
+	if fighter.is_dead and healer.is_dead:
 		big_attack_timer.stop()
 		regular_attack_timer.stop()
 
@@ -78,7 +78,7 @@ func calculate_damage(atk_damage, fighter_defense):
 func choose_target():
 	var rand = randi() % 100
 	if rand < 70:
-		if fighter.isDead:
+		if fighter.is_dead:
 			return healer
 		return fighter
 	else:
@@ -89,7 +89,7 @@ func choose_target():
 
 func attack():
 	var target = choose_target()
-	if fighter.isDead and healer.is_dead:
+	if fighter.is_dead and healer.is_dead:
 		regular_attack_timer.stop()
 
 	if target:
@@ -102,7 +102,7 @@ func attack():
 			notification_timer.start()
 			animation_player.play("big_attack")
 			await get_tree().create_timer(0.75).timeout
-			if fighter.isDead or healer.is_dead:
+			if fighter.is_dead or healer.is_dead:
 				target.take_damage(damage_dealt)
 			else:
 				fighter.take_damage(damage_dealt + 25)  # 25 is arbitrary number for now
@@ -151,7 +151,7 @@ func _on_timer_timeout():
 
 
 func _on_big_attack_timer_timeout():
-	if fighter.isDead or healer.is_dead:
+	if fighter.is_dead or healer.is_dead:
 		big_attack_timer.stop()
 	is_big_attack = true
 	big_attack_timer.start()

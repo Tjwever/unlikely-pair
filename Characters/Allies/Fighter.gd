@@ -5,18 +5,17 @@ class_name Fighter
 signal update_fighter_health
 signal fighter_defeated
 
+@onready var timer = $Timer
+@onready var enemy = $"../Enemy"
+@onready var animation_player = $AnimationPlayer
+@onready var notification_timer = $NotificationTimer
+@onready var display_numbers_origin = $DisplayNumbersOrigin
+@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
+@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer/Healthbar"
-@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
 @onready
 var special_move_notifier_label = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
-@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
-
-@onready var enemy = $"../Enemy"
-@onready var timer = $Timer
-@onready var notification_timer = $NotificationTimer
-@onready var animation_player = $AnimationPlayer
-@onready var display_numbers_origin = $DisplayNumbersOrigin
 
 const BASE_WAIT_TIME = 1
 
@@ -30,10 +29,19 @@ var double_attack_rate
 var level
 var is_critical_hit: bool = false
 var is_double_attack: bool = false
-var isDead: bool = false
+var is_dead: bool = false
 
 
 func _ready():
+	initialize_fighter_data()
+	initialize_ui()
+	move_to_position()
+
+	set_attack_timer()
+	timer.start()
+
+
+func initialize_fighter_data():
 	var fighter_data = CharacterState.load_character_data("fighter")
 
 	if fighter_data:
@@ -46,21 +54,21 @@ func _ready():
 		double_attack_rate = fighter_data["double_attack_rate"]
 		level = fighter_data["level"]
 
+
+func initialize_ui():
 	healthbar.init_health(current_health)
 
+
+func move_to_position():
 	await get_tree().create_timer(0.5).timeout
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(1227, 351), 0.3)
 	await get_tree().create_timer(1).timeout
 	tween.kill()
 
-	set_attack_timer()
-	timer.start()
-
 
 func set_attack_timer():
 	var speed_calculation: float = float(BASE_WAIT_TIME / float(speed / 10.0))
-
 	timer.wait_time = speed_calculation
 
 
@@ -113,12 +121,12 @@ func take_damage(damage):
 		timer.stop()
 		animation_player.queue("death")
 		await get_tree().create_timer(0.32).timeout
-		isDead = true
+		is_dead = true
 		emit_signal("fighter_defeated")
 
 
 func heal(amount):
-	if isDead:
+	if is_dead:
 		current_health = 0
 	else:
 		current_health += amount
