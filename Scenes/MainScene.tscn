@@ -391,6 +391,15 @@ theme_override_font_sizes/font_size = 64
 text = "Game Over!"
 horizontal_alignment = 1
 
+[node name="DoubleKO" type="Label" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "D-D-Double KO!!"
+horizontal_alignment = 1
+
 [node name="Again" type="Button" parent="EndGameCanvas/EndGameContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
@@ -451,7 +460,7 @@ stream = ExtResource("8_0ls7x")
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(962, 542)
+anchor_mode = 0
 script = ExtResource("11_20uwl")
 
 [connection signal="enemy_defeated" from="Enemy" to="." method="_on_enemy_enemy_defeated"]

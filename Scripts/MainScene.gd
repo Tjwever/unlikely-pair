@@ -1,10 +1,11 @@
 extends Node2D
 
+@onready var fight_ui = $FightUI
 @onready var pause_canvas = $PauseCanvas
 @onready var end_game_canvas = $EndGameCanvas
 @onready var you_won = $EndGameCanvas/EndGameContainer/VBoxContainer/YouWon
+@onready var double_ko = $EndGameCanvas/EndGameContainer/VBoxContainer/DoubleKO
 @onready var game_over = $EndGameCanvas/EndGameContainer/VBoxContainer/GameOver
-@onready var fight_ui = $FightUI
 
 var is_healer_dead: bool = false
 var is_fighter_dead: bool = false
@@ -27,6 +28,11 @@ func _ready():
 
 
 func _process(_delta):
+	if you_won.visible and game_over.visible:
+		you_won.visible = false
+		game_over.visible = false
+		double_ko = true
+
 	if is_fighter_dead and is_healer_dead:
 		await get_tree().create_timer(1.3).timeout
 		end_game_canvas.visible = true
@@ -35,7 +41,6 @@ func _process(_delta):
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-		print("pressed")
 		toggle_pause_menu()
 
 
