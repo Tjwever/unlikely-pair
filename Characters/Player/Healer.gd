@@ -7,32 +7,33 @@ signal update_min_ap
 signal healer_defeated
 
 # UI
+@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
+@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
 @onready
 var healthbar = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/Healthbar"
-@onready var special_move_notifier_ui = $"./SpecialMoveNotifierUI"
 @onready
 var special_move_notifier_label = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer/SpecialMoveNotifierLabel"
-@onready var panel_container = $"./SpecialMoveNotifierUI/VBoxContainer/PanelContainer"
-@onready var heal_input_1 = $HealInputContainer/HealInput1
-@onready var heal_input_2 = $HealInputContainer/HealInput2
-@onready var heal_input_3 = $HealInputContainer/HealInput3
-@onready var heal_input_4 = $HealInputContainer/HealInput4
-@onready var heal_input_5 = $HealInputContainer2/HealInput5
-@onready var heal_input_6 = $HealInputContainer2/HealInput6
-@onready var heal_input_7 = $HealInputContainer2/HealInput7
-@onready var heal_input_8 = $HealInputContainer2/HealInput8
-
-@onready
-var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
-@onready
-var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/max_ability_points"
+@onready var heal_inputs = [
+	$HealInputContainer/HealInput1,
+	$HealInputContainer/HealInput2,
+	$HealInputContainer/HealInput3,
+	$HealInputContainer/HealInput4,
+	$HealInputContainer2/HealInput5,
+	$HealInputContainer2/HealInput6,
+	$HealInputContainer2/HealInput7,
+	$HealInputContainer2/HealInput8
+]
 
 # Character related
 @onready var enemy = $"../Enemy"
 @onready var fighter = $"../Fighter"
-@onready var display_numbers_origin = $DisplayNumbersOrigin
-@onready var fighter_selected = $"../Fighter/Focus"
 @onready var healer_selected = $"./Focus"
+@onready var fighter_selected = $"../Fighter/Focus"
+@onready var display_numbers_origin = $DisplayNumbersOrigin
+@onready
+var min_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/min_ability_points"
+@onready
+var max_ability_points = $"../GameUI/PlayerSideUI/GridContainer/MarginContainer/VBoxContainer/HBoxContainer2/HSpacer/HBoxContainer/max_ability_points"
 
 # Timers
 @onready var recharge_ap_timer = $recharge_ap_timer
@@ -49,26 +50,14 @@ var defense
 var min_ap
 var max_ap
 var level
-var attack_delay := false
-var combo_array = []
-var allies = []
-var selected_ally_index := 0
-
 var light_heal_amount
 var medium_heal_amount
 var heavy_heal_amount
-
-var is_dead: bool = false
-
-const origin_point := Vector2(-120, 290)
-const indicator_position1 := Vector2(40, -35)
-const indicator_position2 := Vector2(-205, 295)
-const indicator_position3 := Vector2(-205, 630)
-const indicator_position4 := Vector2(40, 950)
-const indicator_position5 := Vector2(1580, -35)
-const indicator_position6 := Vector2(1745, 295)
-const indicator_position7 := Vector2(1745, 630)
-const indicator_position8 := Vector2(1580, 950)
+var combo_array := []
+var allies := []
+var attack_delay := false
+var is_dead := false
+var selected_ally_index := 0
 
 const LIGHT := "light"
 const MEDIUM := "medium"
@@ -76,8 +65,27 @@ const HEAVY := "heavy"
 const LIGHT_HEAL_INDICATOR = preload("res://Assets/HealerAssets/light-heal-indicator.png")
 const MEDIUM_HEAL_INDICATOR = preload("res://Assets/HealerAssets/medium-heal-indicator.png")
 const HEAVY_HEAL_INDICATOR = preload("res://Assets/HealerAssets/heavy-heal-indicator.png")
+const ORIGIN_POINT := Vector2(-120, 290)
+const INDICATOR_POSITIONS = [
+	Vector2(40, -35),
+	Vector2(-205, 295),
+	Vector2(-205, 630),
+	Vector2(40, 950),
+	Vector2(1580, -35),
+	Vector2(1745, 295),
+	Vector2(1745, 630),
+	Vector2(1580, 950)
+]
+
 
 func _ready():
+	initialize_healer_data()
+	initialize_ui()
+	move_to_start_position()
+	setup_allies()
+
+
+func initialize_healer_data():
 	var healer_data = CharacterState.load_character_data("healer")
 
 	if healer_data:
@@ -91,16 +99,22 @@ func _ready():
 		heavy_heal_amount = healer_data["heavy_heal_amount"]
 		level = healer_data["level"]
 
+
+func initialize_ui():
 	healthbar.init_health(current_health)
 	min_ability_points.text = str(min_ap)
 	max_ability_points.text = str(max_ap)
 
+
+func move_to_start_position():
 	await get_tree().create_timer(0.5).timeout
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(1370, 461), 0.4)
 	await get_tree().create_timer(1).timeout
 	tween.kill()
 
+
+func setup_allies():
 	if fighter and self:
 		allies = [fighter, self]
 		hide_all_focus()
@@ -131,7 +145,12 @@ func _process(_delta):
 
 
 func input_action(ability_point_deduction):
-	if !attack_delay and !is_dead and min_ap >= ability_point_deduction and combo_array.size() < max_ap:
+	if (
+		!attack_delay
+		and !is_dead
+		and min_ap >= ability_point_deduction
+		and combo_array.size() < max_ap
+	):
 		if ability_point_deduction == 1:
 			combo_array.append(LIGHT)
 			heal_input_icon_show()
@@ -148,56 +167,11 @@ func input_action(ability_point_deduction):
 		emit_signal("update_min_ap", min_ap)
 
 
-func release_combo():
-	var local_array = combo_array.duplicate()
-	var _i = 0
-	var tween = get_tree().create_tween()
-
-	tween.tween_property(heal_input_1, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_1, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_2, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_2, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_3, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_3, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_4, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_4, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_5, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_5, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_6, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_6, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_7, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_7, "scale", Vector2(0, 0), 0.1)
-	tween.tween_property(heal_input_8, "position", origin_point, 0.1)
-	tween.tween_property(heal_input_8, "scale", Vector2(0, 0), 0.1)
-
-	for _heal in local_array:
-		if _heal == LIGHT:
-			launch_health_orb(light_heal_amount)
-		elif _heal == MEDIUM:
-			launch_health_orb(medium_heal_amount)
-		else:
-			launch_health_orb(heavy_heal_amount)
-		_i += 1
-		await get_tree().create_timer(0.3).timeout
-		combo_array.remove_at(0)
-	cast_special_ability(local_array)
-
-
 func heal_input_icon_show():
 	var local_array = combo_array.duplicate()
-	var index = 1
-
-	for _input in local_array:
-		heal_icon_check(index, local_array, 0, heal_input_1, indicator_position1)
-		heal_icon_check(index, local_array, 1, heal_input_2, indicator_position2)
-		heal_icon_check(index, local_array, 2, heal_input_3, indicator_position3)
-		heal_icon_check(index, local_array, 3, heal_input_4, indicator_position4)
-		heal_icon_check(index, local_array, 4, heal_input_5, indicator_position5)
-		heal_icon_check(index, local_array, 5, heal_input_6, indicator_position6)
-		heal_icon_check(index, local_array, 6, heal_input_7, indicator_position7)
-		heal_icon_check(index, local_array, 7, heal_input_8, indicator_position8)
-
-		index += 1
+	for i in range(local_array.size()):
+		if i < heal_inputs.size() and i < INDICATOR_POSITIONS.size():
+			heal_icon_check(i + 1, local_array, i, heal_inputs[i], INDICATOR_POSITIONS[i])
 
 
 func heal_icon_check(i: int, array: Array, index_check: int, input_type, pos):
@@ -220,12 +194,35 @@ func heal_icon_check(i: int, array: Array, index_check: int, input_type, pos):
 		tween.tween_property(input_type, "position", pos, 0.15)
 
 
+func release_combo():
+	var local_array = combo_array.duplicate()
+	var _i = 0
+	var tween = get_tree().create_tween()
+
+	for heal_input in heal_inputs:
+		tween.tween_property(heal_input, "position", ORIGIN_POINT, 0.1)
+		tween.tween_property(heal_input, "scale", Vector2(0, 0), 0.1)
+
+	for _heal in local_array:
+		if _heal == LIGHT:
+			launch_health_orb(light_heal_amount)
+		elif _heal == MEDIUM:
+			launch_health_orb(medium_heal_amount)
+		else:
+			launch_health_orb(heavy_heal_amount)
+		_i += 1
+		await get_tree().create_timer(0.3).timeout
+		combo_array.remove_at(0)
+
+	cast_special_ability(local_array)
+
+
 func cast_special_ability(_combo_array: Array):
 	var combo_string = "".join(_combo_array)
 
-	if combo_string.contains('lightlightlightlight'):
+	if combo_string.contains("lightlightlightlight"):
 		regen()
-	elif combo_string.contains('mediummedium'):
+	elif combo_string.contains("mediummedium"):
 		aoe_heal()
 
 
@@ -257,20 +254,6 @@ func aoe_heal():
 	else:
 		fighter.heal(24)
 		self.heal(24)
-
-
-func take_damage(damage):
-	current_health -= damage
-	DisplayNumbers.display_number(damage, display_numbers_origin.global_position, false, false)
-	emit_signal("update_healer_health", current_health)
-
-	if current_health < 0:
-		current_health = 0
-
-	if current_health == 0:
-		animation_player.play("death")
-		is_dead = true
-		emit_signal("healer_defeated")
 
 
 func healing_animation(health_orb: HealthOrb, character: CharacterBody2D, amount: int):
@@ -318,6 +301,20 @@ func heal(amount):
 
 	if current_health > max_health:
 		current_health = max_health
+
+
+func take_damage(damage):
+	current_health -= damage
+	DisplayNumbers.display_number(damage, display_numbers_origin.global_position, false, false)
+	emit_signal("update_healer_health", current_health)
+
+	if current_health < 0:
+		current_health = 0
+
+	if current_health == 0:
+		animation_player.play("death")
+		is_dead = true
+		emit_signal("healer_defeated")
 
 
 func show_special_ability_notification(_label):
